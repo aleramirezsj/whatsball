@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 public class VolverInicio : MonoBehaviour {
-	
+	//definimos las propiedades de la clase
     public Slider sldTamanioPelota;
 	public Slider sldVelocidadPelotas;
 	public Slider sldCantidadPelotas;
