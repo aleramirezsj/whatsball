@@ -31,7 +31,7 @@ public class ComportamientoPelota : MonoBehaviour {
 	public GameObject pelota;
 	public static List<GameObject> pelotasEnElJuego=new List<GameObject>();
 	public static bool esNecesarioVolver=false;
-	
+	//public AudioSource audioPelota;
 
     void Start () {
 		Screen.fullScreen = false;
@@ -184,5 +184,8 @@ public class ComportamientoPelota : MonoBehaviour {
 		return posicionAleatoria;
 	}
 
-
+	//private void OnCollisionEnter2D(Collision2D collision)
+	//{
+	//	audioPelota.Play();
+	//}
 }

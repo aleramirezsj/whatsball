@@ -21,6 +21,8 @@ public class CambiarEscena : MonoBehaviour {
 	public GameObject pelota;
 	private ParametrosJuego parametros=new ParametrosJuego();
 
+
+
 	public void CambiarEscenaA(string nombreEscena)
 	{
 		SceneManager.LoadScene(nombreEscena);
@@ -48,6 +50,8 @@ public class CambiarEscena : MonoBehaviour {
 	    Application.Quit(); 
 	}
 	void Start () {
+		
+		//musicPlayer = GetComponent<AudioSource>();
 		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores
 		//recuperados		
 		//txtVelocidadPelotas.text=Application.persistentDataPath.ToString();
@@ -87,7 +91,7 @@ public class CambiarEscena : MonoBehaviour {
 		}
 		
 	}
-
+	
 
 	void OnDisable()
 	{
@@ -103,6 +107,7 @@ public class CambiarEscena : MonoBehaviour {
 
 	}
 	 void Update(){
+		//musicPlayer.Play();
 		if (Input.GetKeyDown(KeyCode.Escape)) 
 			Application.Quit(); 
 		}
