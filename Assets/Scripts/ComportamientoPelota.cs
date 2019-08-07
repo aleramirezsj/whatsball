@@ -17,7 +17,7 @@ public class ComportamientoPelota : MonoBehaviour {
 	public static int tiempoDeInicio;
 	public static int instancias;
 	public Text txtNombreJugador;
-	public Text txtJugador;
+	public Text lblJugador;
 	public Text txtTiempoDeInicio;
 	public static Color colorOriginal;
 	int segundos=0;
@@ -66,7 +66,7 @@ public class ComportamientoPelota : MonoBehaviour {
 		cantidadTotalPelotas=PlayerPrefs.GetInt("cantidadTotalPelotas");
 		escalaActualPelota=PlayerPrefs.GetFloat("escalaActualPelota");
 		velocidadPelotasActual=PlayerPrefs.GetInt("velocidadPelotasActual")*2;
-		txtNombreJugador.text=PlayerPrefs.GetString("nombreJugador");
+		lblJugador.text=PlayerPrefs.GetString("nombreJugador");
 		iniciarInmediatamente=(PlayerPrefs.GetInt("iniciarInmediatamente"))==1;
 		tiempoDeColor=PlayerPrefs.GetInt("tiempoDeColor");
 		tiempoDeInicio=PlayerPrefs.GetInt("tiempoDeInicio");
@@ -115,7 +115,7 @@ public class ComportamientoPelota : MonoBehaviour {
 			if(tiempoDeInicio+tiempoDeColor==segundos-1){
 				txtTiempoDeInicio.enabled=false;
 				txtNombreJugador.enabled=false;
-				txtJugador.enabled=false;
+				lblJugador.enabled=false;
 				if(continuarRebotes==false)
 					rbBall.velocity=new Vector2(0,0);
 			}
@@ -138,7 +138,7 @@ public class ComportamientoPelota : MonoBehaviour {
 		if (pelotaPresionada.tag=="Resaltada"&& juegoIniciado && segundos>=tiempoDeColor+tiempoDeInicio)
 		{
         	//rbBall.velocity=new Vector2(0,0);
-			pelotaPresionada.GetComponent<Renderer>().material.color=Color.red;			
+			pelotaPresionada.GetComponent<Renderer>().material.color=Color.green;			
 			cantidadEncontradas++;
 			//Debug.Log("Encontradas:"+cantidadEncontradas.ToString());
 			//Debug.Log("Cantidad a resaltar:"+cantidadResaltadas.ToString());
@@ -149,7 +149,7 @@ public class ComportamientoPelota : MonoBehaviour {
 				}
 				txtTiempoDeInicio.enabled=true;
 				txtNombreJugador.enabled=true;
-				txtJugador.enabled=true;
+				lblJugador.enabled=true;
 				juegoIniciado=false;
 				finalizarJuego=true;
 				esNecesarioVolver=true;

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class CambiarEscena : MonoBehaviour {
+public class ScriptHome : MonoBehaviour {
 	public Text txtTamanioPelota;
 	public Text txtVelocidadPelotas;
 	public Text txtCantidadPelotas;
