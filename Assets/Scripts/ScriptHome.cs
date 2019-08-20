@@ -21,7 +21,7 @@ public class ScriptHome : MonoBehaviour {
 	public GameObject pelota;*/
 	public TextMeshProUGUI txtNombreJugador;
 	public Text lblNivel;
-	static DatosJuego datosJuego;
+	public DatosJuego datosJuego;
 	public void CambiarEscenaA(string nombreEscena)
 	{
 		SceneManager.LoadScene(nombreEscena);
@@ -55,12 +55,13 @@ public class ScriptHome : MonoBehaviour {
 		Screen.fullScreen = false;
 		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
 			BinaryFormatter bf= new BinaryFormatter();
-			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
+			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);
 			datosJuego= (DatosJuego)bf.Deserialize(archivo);
+			//datosJuego = new DatosJuego("hacha");
 			archivo.Close();
 			//coloco los valores recuperados en la pantalla
 			txtNombreJugador.text=datosJuego.jugadorActual.nombre;	
-			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivel.ToString();
+			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
 			//Debug.Log("Encontró el archivo "+datosJuego.jugadores.Count);
 			/* txtTamanioPelota.text=parametros.tamanioActualPelota.ToString();
 			txtCantidadPelotas.text=parametros.cantidadTotalPelotas.ToString();
@@ -110,7 +111,7 @@ public class ScriptHome : MonoBehaviour {
 		archivo.Close();
 					
 		PlayerPrefs.SetString("nombreJugador",txtNombreJugador.text);
-		PlayerPrefs.SetInt("nivelActual",datosJuego.jugadorActual.nivel);
+		PlayerPrefs.SetInt("nivelActual",datosJuego.jugadorActual.nivelActual);
 
 	}
 	 void Update(){

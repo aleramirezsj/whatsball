@@ -8,18 +8,20 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class ScriptJuego : MonoBehaviour {
 
-	// Use this for initialization
-	public DatosJuego datosJuego;
+	// Propiedades vinculada con elementos de la pantalla
 	public Text lblNivel;
+	public Text lblJugador;
+	public Text txtTiempoDeInicio;
+	public GameObject pelota;
 	public Rigidbody2D rbBall;
+	// fin propiedades de pantalla
+	public DatosJuego datosJuego;
 	private int cantidadTotalPelotas;
 	private float tamanioActualPelota;
 	private int velocidadPelotasActual;
 	public static int tiempoDeColor;
 	public static int tiempoDeInicio;
-	public static int instancias;
-	public Text lblJugador;
-	public Text txtTiempoDeInicio;
+	public static int instancias;	
 	public static Color colorOriginal;
 	int segundos=0;
 	float contadorDeSegundos=0;
@@ -29,12 +31,16 @@ public class ScriptJuego : MonoBehaviour {
 	bool continuarRebotes;
 	static public int cantidadResaltadas;
 	static public int cantidadEncontradas;
-	public GameObject pelota;
 	public static List<GameObject> pelotasEnElJuego=new List<GameObject>();
 	public static bool esNecesarioVolver=false;
 	public static bool juegoIniciado= false;
 
 	void Start () {
+		//almaceno el color original en la propiedad estática y la pelota original en la lista de pelotas
+		if(instancias==0){
+			colorOriginal=GetComponent<Renderer>().material.color;
+			pelotasEnElJuego.Add(pelota);
+		}
 		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
 			BinaryFormatter bf= new BinaryFormatter();
 			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
@@ -42,7 +48,7 @@ public class ScriptJuego : MonoBehaviour {
 			archivo.Close();
 			//coloco los valores recuperados en la pantalla
 			lblJugador.text=datosJuego.jugadorActual.nombre;	
-			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivel.ToString();
+			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
 		}
 		NivelDeJuego nivelDeJuego=datosJuego.jugadorActual.obtenerNivelDeJuego();
 		Debug.Log("cantidad de pelotas Nivel obtenido="+nivelDeJuego.cantidadTotalPelotas.ToString());
@@ -54,6 +60,23 @@ public class ScriptJuego : MonoBehaviour {
 		tiempoDeInicio=nivelDeJuego.tiempoDeInicio;
 		continuarRebotes=nivelDeJuego.continuarRebotes;
 		cantidadResaltadas=nivelDeJuego.cantidadResaltadas;
+
+		//Creamos las pelotas comunes y resaltadas
+		GameObject pelotaInstanciada;
+		//transform.position=Camera.main.ScreenToWorldPoint(posicionAleatoria);
+		transform.position=obtenerPosicionAleatoria();
+		transform.localScale=new Vector3(tamanioActualPelota/2,tamanioActualPelota/2,tamanioActualPelota/2);
+		if(instancias<cantidadTotalPelotas-1){
+			for(int i=0;i<cantidadTotalPelotas-1;i++){
+				pelotaInstanciada=Instantiate(pelota, obtenerPosicionAleatoria(), transform.rotation) as GameObject;
+				instancias++;
+				if(cantidadTotalPelotas-instancias<=cantidadResaltadas){
+					pelotaInstanciada.tag="Resaltada";
+					pelotaInstanciada.GetComponent<Renderer>().material.color = Color.red;
+				}
+				pelotasEnElJuego.Add(pelotaInstanciada);
+			}
+		}
 	}
 	 void OnEnable()
 	{
@@ -65,7 +88,7 @@ public class ScriptJuego : MonoBehaviour {
 	void FixedUpdate () {
 		if (!juegoIniciado && !esNecesarioVolver)
 		{
-			if(Input.GetMouseButtonDown(0)||iniciarInmediatamente)
+			if(Input.GetMouseButtonDown(0))
 			{
 				
 				foreach(GameObject pelo in pelotasEnElJuego){
@@ -100,7 +123,7 @@ public class ScriptJuego : MonoBehaviour {
 			}
 			if(tiempoDeInicio+tiempoDeColor==segundos-1){
 				txtTiempoDeInicio.enabled=false;
-				lblJugador.enabled=false;
+				//lblJugador.enabled=false;
 				if(continuarRebotes==false)
 					rbBall.velocity=new Vector2(0,0);
 			}
@@ -123,7 +146,7 @@ public class ScriptJuego : MonoBehaviour {
 		if (pelotaPresionada.tag=="Resaltada"&& juegoIniciado && segundos>=tiempoDeColor+tiempoDeInicio)
 		{
         	//rbBall.velocity=new Vector2(0,0);
-			pelotaPresionada.GetComponent<Renderer>().material.color=Color.green;			
+			pelotaPresionada.GetComponent<Renderer>().material.color=Color.red;			
 			cantidadEncontradas++;
 			//Debug.Log("Encontradas:"+cantidadEncontradas.ToString());
 			//Debug.Log("Cantidad a resaltar:"+cantidadResaltadas.ToString());
@@ -139,6 +162,8 @@ public class ScriptJuego : MonoBehaviour {
 				esNecesarioVolver=true;
 			}
 				
+		}else if(juegoIniciado && segundos>=tiempoDeColor+tiempoDeInicio){
+			pelotaPresionada.GetComponent<Renderer>().material.color=Color.gray;	
 		}
     }
 
