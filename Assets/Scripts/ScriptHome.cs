@@ -8,21 +8,20 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ScriptHome : MonoBehaviour {
-	public Text txtTamanioPelota;
+	/*public Text txtTamanioPelota;
 	public Text txtVelocidadPelotas;
 	public Text txtCantidadPelotas;
 	public Text txtCantidadResaltadas;
 	public Text txtTiempoDeColor;
 	public Text txtTiempoDeInicio;
-	public Text lblNombreJugador;
+	
 	public Toggle ChkIniciarInmediatamente;
 	public Component lstJugadores;
 	public Toggle chkContinuarRebotes;
-	public GameObject pelota;
-	private ParametrosJuego parametros=new ParametrosJuego();
-
-
-
+	public GameObject pelota;*/
+	public TextMeshProUGUI txtNombreJugador;
+	public Text lblNivel;
+	static DatosJuego datosJuego;
 	public void CambiarEscenaA(string nombreEscena)
 	{
 		SceneManager.LoadScene(nombreEscena);
@@ -51,17 +50,19 @@ public class ScriptHome : MonoBehaviour {
 	}
 	void Start () {
 		
-		//musicPlayer = GetComponent<AudioSource>();
-		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores
-		//recuperados		
+		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores recuperados		
 		//txtVelocidadPelotas.text=Application.persistentDataPath.ToString();
 		Screen.fullScreen = false;
-		if (File.Exists(Application.persistentDataPath+"/DatosJuego.dat")){
+		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
 			BinaryFormatter bf= new BinaryFormatter();
-			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);	
-			parametros= (ParametrosJuego)bf.Deserialize(archivo);
+			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
+			datosJuego= (DatosJuego)bf.Deserialize(archivo);
 			archivo.Close();
-			txtTamanioPelota.text=parametros.tamanioActualPelota.ToString();
+			//coloco los valores recuperados en la pantalla
+			txtNombreJugador.text=datosJuego.jugadorActual.nombre;	
+			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivel.ToString();
+			//Debug.Log("Encontró el archivo "+datosJuego.jugadores.Count);
+			/* txtTamanioPelota.text=parametros.tamanioActualPelota.ToString();
 			txtCantidadPelotas.text=parametros.cantidadTotalPelotas.ToString();
 			txtCantidadResaltadas.text=parametros.cantidadResaltadas.ToString();
 			Debug.Log("Resaltadas:"+parametros.cantidadResaltadas);
@@ -72,9 +73,10 @@ public class ScriptHome : MonoBehaviour {
 			txtTiempoDeInicio.text=(parametros.tiempoDeInicio+parametros.tiempoDeColor).ToString();
 			chkContinuarRebotes.isOn=parametros.continuarRebotes;
 			pelota.transform.localScale=new Vector3(parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2);
-			//txtVelocidadPelotas.text="SI";
+			//txtVelocidadPelotas.text="SI";*/
 		}else{
-			txtTamanioPelota.text="5";
+			Debug.Log("No encontró el archivo");
+			/*txtTamanioPelota.text="5";
 			txtCantidadResaltadas.text="1";
 			txtCantidadPelotas.text="5";
 			txtVelocidadPelotas.text="5";
@@ -87,7 +89,7 @@ public class ScriptHome : MonoBehaviour {
 			PlayerPrefs.SetFloat("escalaActualPelota",5);
 			PlayerPrefs.SetInt("velocidadPelotasActual", 5);
 			PlayerPrefs.SetInt("tiempoDeColor",5);
-			PlayerPrefs.SetInt("tiempoDeInicio",5);
+			PlayerPrefs.SetInt("tiempoDeInicio",5);*/
 		}
 		
 	}
@@ -95,15 +97,20 @@ public class ScriptHome : MonoBehaviour {
 
 	void OnDisable()
 	{
-		PlayerPrefs.SetInt("iniciarInmediatamente",ChkIniciarInmediatamente.isOn?1:0);
-		PlayerPrefs.SetInt("chkContinuarRebotes",chkContinuarRebotes.isOn?1:0);
-		parametros.iniciarInmediatamente=ChkIniciarInmediatamente.isOn;
-		parametros.continuarRebotes=chkContinuarRebotes.isOn;
+		if (datosJuego==null){
+			datosJuego=new DatosJuego(txtNombreJugador.text);
+		}else{
+			if(datosJuego.jugadorActual.nombre.ToUpper()!=txtNombreJugador.text.ToUpper()){
+				datosJuego.recuperarOCrearJugador(txtNombreJugador.text);
+			}
+		}
 		BinaryFormatter bf= new BinaryFormatter();
-		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);	
-		bf.Serialize(archivo,parametros);
-		archivo.Close();			
-		//Debug.Log(iniciaInmediatamente.isOn?1:0);
+		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
+		bf.Serialize(archivo,datosJuego);
+		archivo.Close();
+					
+		PlayerPrefs.SetString("nombreJugador",txtNombreJugador.text);
+		PlayerPrefs.SetInt("nivelActual",datosJuego.jugadorActual.nivel);
 
 	}
 	 void Update(){

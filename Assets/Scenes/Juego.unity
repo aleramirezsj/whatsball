@@ -315,6 +315,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 119710010}
+  - {fileID: 737520066}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -718,6 +719,81 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &737520065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 737520066}
+  - component: {fileID: 737520068}
+  - component: {fileID: 737520067}
+  m_Layer: 5
+  m_Name: lbllNivel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &737520066
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 737520065}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5468.463}
+  m_LocalScale: {x: 1.4266614, y: 1.4266614, z: 1.4266614}
+  m_Children: []
+  m_Father: {fileID: 151879858}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 62, y: 214}
+  m_SizeDelta: {x: 162.3, y: 25.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &737520067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 737520065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5803922, g: 0.87843144, b: 0.57254905, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: b420ca4889c522247b65881ce64051a5, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 3
+    m_MaxSize: 200
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Nivel
+--- !u!222 &737520068
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 737520065}
+  m_CullTransparentMesh: 0
 --- !u!1 &1042880559
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,8 +927,8 @@ GameObject:
   - component: {fileID: 1110673547}
   - component: {fileID: 1110673546}
   - component: {fileID: 1110673549}
-  - component: {fileID: 1110673550}
   - component: {fileID: 1110673551}
+  - component: {fileID: 1110673550}
   m_Layer: 0
   m_Name: Pelota
   m_TagString: Original
@@ -962,12 +1038,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1110673545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2a99dffb35186b45a3be6275019a84a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f45abe7c07a01b46a48583682dc1692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  datosJuego:
+    jugadorActual:
+      nombre: 
+      nivel: 0
+  lblNivel: {fileID: 737520067}
   rbBall: {fileID: 1110673546}
-  canvas: {fileID: 151879857}
-  txtNombreJugador: {fileID: 0}
   lblJugador: {fileID: 1825740781}
   txtTiempoDeInicio: {fileID: 581774581}
   pelota: {fileID: 1110673545}
@@ -1235,7 +1314,7 @@ RectTransform:
   m_Children:
   - {fileID: 2038051124}
   m_Father: {fileID: 1801150666}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1531,7 +1610,7 @@ RectTransform:
   m_Children:
   - {fileID: 1243249606}
   m_Father: {fileID: 1801150666}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1765,9 +1844,9 @@ RectTransform:
   m_Children:
   - {fileID: 1042880560}
   - {fileID: 581774580}
-  - {fileID: 1825740780}
   - {fileID: 1303787436}
   - {fileID: 1475362852}
+  - {fileID: 1825740780}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1804,7 +1883,7 @@ RectTransform:
   m_LocalScale: {x: 1.7777777, y: 1.7777777, z: 1.7777777}
   m_Children: []
   m_Father: {fileID: 1801150666}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -37,18 +37,18 @@ public class VolverInicio : MonoBehaviour {
 		BinaryFormatter bf= new BinaryFormatter();
 		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);
 
-		ParametrosJuego parametros=new ParametrosJuego();	
-		parametros.cantidadTotalPelotas=(int)sldCantidadPelotas.value;	
-		parametros.cantidadResaltadas=(int)sldCantidadResaltadas.value;
-		parametros.tamanioActualPelota=sldTamanioPelota.value;
-		parametros.velocidadActualPelotas=(int)sldVelocidadPelotas.value;
-		parametros.jugadorActual=infNombreJugador.text;
+		//ParametrosJuego parametros=new ParametrosJuego();	
+		//parametros.cantidadTotalPelotas=(int)sldCantidadPelotas.value;	
+		//parametros.cantidadResaltadas=(int)sldCantidadResaltadas.value;
+		//parametros.tamanioActualPelota=sldTamanioPelota.value;
+		//parametros.velocidadActualPelotas=(int)sldVelocidadPelotas.value;
+		//parametros.jugadorActual=infNombreJugador.text;
 		//parametros.jugadores.Add(infNombreJugador.text);
 		//parametros.iniciarInmediatamente=iniciaInmediatamente.isOn;
-		parametros.tiempoDeColor=(int)sldTiempoDeColor.value;
-		parametros.tiempoDeInicio=(int)sldTiempoDeInicio.value;
+		//parametros.tiempoDeColor=(int)sldTiempoDeColor.value;
+		//parametros.tiempoDeInicio=(int)sldTiempoDeInicio.value;
 		//parametros.continuarRebotes=chkContinuarRebotes.isOn;
-		bf.Serialize(archivo,parametros);
+		//bf.Serialize(archivo,parametros);
 		archivo.Close();
 	}
 
@@ -63,9 +63,9 @@ public class VolverInicio : MonoBehaviour {
 		if (File.Exists(Application.persistentDataPath+"/DatosJuego.dat")){
 			BinaryFormatter bf= new BinaryFormatter();
 			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);	
-			ParametrosJuego parametros= (ParametrosJuego)bf.Deserialize(archivo);
+			//ParametrosJuego parametros= (ParametrosJuego)bf.Deserialize(archivo);
 			archivo.Close();
-			sldTamanioPelota.value=parametros.tamanioActualPelota;
+			/*sldTamanioPelota.value=parametros.tamanioActualPelota;
 			sldCantidadPelotas.value=parametros.cantidadTotalPelotas;
 			sldCantidadResaltadas.value=parametros.cantidadResaltadas;
 			Debug.Log("Resaltadas:"+parametros.cantidadResaltadas);
@@ -73,7 +73,7 @@ public class VolverInicio : MonoBehaviour {
 			infNombreJugador.text=parametros.jugadorActual;	
 			//iniciaInmediatamente.isOn=parametros.iniciarInmediatamente;
 			sldTiempoDeColor.value=parametros.tiempoDeColor;
-			sldTiempoDeInicio.value=parametros.tiempoDeInicio;
+			sldTiempoDeInicio.value=parametros.tiempoDeInicio;*/
 			//chkContinuarRebotes.isOn=parametros.continuarRebotes;
 		}
 	}

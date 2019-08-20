@@ -19,7 +19,7 @@ public class CambiarEscena : MonoBehaviour {
 	public Component lstJugadores;
 	public Toggle chkContinuarRebotes;
 	public GameObject pelota;
-	private ParametrosJuego parametros=new ParametrosJuego();
+	//private ParametrosJuego parametros=new ParametrosJuego();
 
 
 
@@ -59,9 +59,9 @@ public class CambiarEscena : MonoBehaviour {
 		if (File.Exists(Application.persistentDataPath+"/DatosJuego.dat")){
 			BinaryFormatter bf= new BinaryFormatter();
 			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);	
-			parametros= (ParametrosJuego)bf.Deserialize(archivo);
+			//parametros= (ParametrosJuego)bf.Deserialize(archivo);
 			archivo.Close();
-			txtTamanioPelota.text=parametros.tamanioActualPelota.ToString();
+			/*txtTamanioPelota.text=parametros.tamanioActualPelota.ToString();
 			txtCantidadPelotas.text=parametros.cantidadTotalPelotas.ToString();
 			txtCantidadResaltadas.text=parametros.cantidadResaltadas.ToString();
 			Debug.Log("Resaltadas:"+parametros.cantidadResaltadas);
@@ -70,8 +70,8 @@ public class CambiarEscena : MonoBehaviour {
 			ChkIniciarInmediatamente.isOn=parametros.iniciarInmediatamente;
 			txtTiempoDeColor.text=parametros.tiempoDeColor.ToString();
 			txtTiempoDeInicio.text=(parametros.tiempoDeInicio+parametros.tiempoDeColor).ToString();
-			chkContinuarRebotes.isOn=parametros.continuarRebotes;
-			pelota.transform.localScale=new Vector3(parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2);
+			chkContinuarRebotes.isOn=parametros.continuarRebotes; */
+			//pelota.transform.localScale=new Vector3(parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2);
 			//txtVelocidadPelotas.text="SI";
 		}else{
 			txtTamanioPelota.text="5";
@@ -97,11 +97,11 @@ public class CambiarEscena : MonoBehaviour {
 	{
 		PlayerPrefs.SetInt("iniciarInmediatamente",ChkIniciarInmediatamente.isOn?1:0);
 		PlayerPrefs.SetInt("chkContinuarRebotes",chkContinuarRebotes.isOn?1:0);
-		parametros.iniciarInmediatamente=ChkIniciarInmediatamente.isOn;
-		parametros.continuarRebotes=chkContinuarRebotes.isOn;
+		//parametros.iniciarInmediatamente=ChkIniciarInmediatamente.isOn;
+		//parametros.continuarRebotes=chkContinuarRebotes.isOn;
 		BinaryFormatter bf= new BinaryFormatter();
 		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);	
-		bf.Serialize(archivo,parametros);
+		//bf.Serialize(archivo,parametros);
 		archivo.Close();			
 		//Debug.Log(iniciaInmediatamente.isOn?1:0);
 
