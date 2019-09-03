@@ -14,6 +14,7 @@ public class ScriptJuego : MonoBehaviour {
 	public Text txtTiempoDeInicio;
 	public GameObject pelota;
 	public Rigidbody2D rbBall;
+	public Text lblToqueParaContinuar;
 	// fin propiedades de pantalla
 	public DatosJuego datosJuego;
 	private int cantidadTotalPelotas;
@@ -35,12 +36,16 @@ public class ScriptJuego : MonoBehaviour {
 	public static bool esNecesarioVolver=false;
 	public static bool juegoIniciado= false;
 
+
 	void Start () {
+		//Apagamos la etiqueta Toque para continuar
+		lblToqueParaContinuar.enabled=false;
 		//almaceno el color original en la propiedad estática y la pelota original en la lista de pelotas
 		if(instancias==0){
 			colorOriginal=GetComponent<Renderer>().material.color;
 			pelotasEnElJuego.Add(pelota);
 		}
+		
 		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
 			BinaryFormatter bf= new BinaryFormatter();
 			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
@@ -61,8 +66,9 @@ public class ScriptJuego : MonoBehaviour {
 		continuarRebotes=nivelDeJuego.continuarRebotes;
 		cantidadResaltadas=nivelDeJuego.cantidadResaltadas;
 
+		//Construimos todas las pelotas
 		//Creamos las pelotas comunes y resaltadas
-		GameObject pelotaInstanciada;
+	/* 	GameObject pelotaInstanciada;
 		//transform.position=Camera.main.ScreenToWorldPoint(posicionAleatoria);
 		transform.position=obtenerPosicionAleatoria();
 		transform.localScale=new Vector3(tamanioActualPelota/2,tamanioActualPelota/2,tamanioActualPelota/2);
@@ -76,7 +82,10 @@ public class ScriptJuego : MonoBehaviour {
 				}
 				pelotasEnElJuego.Add(pelotaInstanciada);
 			}
-		}
+		}*/
+		creacionDePelotas();
+
+
 	}
 	 void OnEnable()
 	{
@@ -90,7 +99,9 @@ public class ScriptJuego : MonoBehaviour {
 		{
 			if(Input.GetMouseButtonDown(0))
 			{
-				
+				lblToqueParaContinuar.enabled=false;
+
+				txtTiempoDeInicio.enabled=true;
 				foreach(GameObject pelo in pelotasEnElJuego){
 					int multiX=UnityEngine.Random.Range(1,3);
 					if (multiX==2)
@@ -140,7 +151,7 @@ public class ScriptJuego : MonoBehaviour {
 		//Debug.Log(GetComponent<Renderer>().material.color);
 	}
 
-		void OnMouseDown ()
+	void OnMouseDown ()
     {
 		GameObject pelotaPresionada=gameObject.GetComponent<ScriptJuego>().pelota;
 		if (pelotaPresionada.tag=="Resaltada"&& juegoIniciado && segundos>=tiempoDeColor+tiempoDeInicio)
@@ -156,10 +167,15 @@ public class ScriptJuego : MonoBehaviour {
 					pelo.GetComponent<Rigidbody2D>().velocity=new Vector2(0,0);
 				}
 				txtTiempoDeInicio.enabled=true;
+				lblToqueParaContinuar.enabled=true;
 				lblJugador.enabled=true;
 				juegoIniciado=false;
 				finalizarJuego=true;
-				esNecesarioVolver=true;
+				esNecesarioVolver=false;
+				instancias=0;
+				//pelota=null;
+				reiniciarPelotas();
+				segundos=0;
 			}
 				
 		}else if(juegoIniciado && segundos>=tiempoDeColor+tiempoDeInicio){
@@ -173,5 +189,39 @@ public class ScriptJuego : MonoBehaviour {
 		float y=UnityEngine.Random.Range(-4,4);
 		Vector3 posicionAleatoria = new Vector3(x,y,transform.position.z);    
 		return posicionAleatoria;
+	}
+
+	private void creacionDePelotas()
+	{
+	 
+	/*
+		//almaceno el color original en la propiedad estática y la pelota original en la lista de pelotas
+		if(instancias==0){
+			colorOriginal=GetComponent<Renderer>().material.color;
+			pelotasEnElJuego.Add(pelota);
+		}*/
+		//Creamos las pelotas comunes y resaltadas
+		GameObject pelotaInstanciada;
+		//transform.position=Camera.main.ScreenToWorldPoint(posicionAleatoria);
+		transform.position=obtenerPosicionAleatoria();
+		transform.localScale=new Vector3(tamanioActualPelota/2,tamanioActualPelota/2,tamanioActualPelota/2);
+		if(instancias<cantidadTotalPelotas-1){
+			for(int i=0;i<cantidadTotalPelotas-1;i++){
+				pelotaInstanciada=Instantiate(pelota, obtenerPosicionAleatoria(), transform.rotation) as GameObject;
+				instancias++;
+				if(cantidadTotalPelotas-instancias<=cantidadResaltadas){
+					pelotaInstanciada.tag="Resaltada";
+					pelotaInstanciada.GetComponent<Renderer>().material.color = Color.red;
+				}
+				pelotasEnElJuego.Add(pelotaInstanciada);
+			}
+		}
+	}
+	 private void reiniciarPelotas()
+	{
+		foreach(GameObject pelo in pelotasEnElJuego)
+		{
+		pelo.transform.position=obtenerPosicionAleatoria();
+		}
 	}
 }
