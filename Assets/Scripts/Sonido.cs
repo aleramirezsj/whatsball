@@ -7,12 +7,19 @@ public class Sonido : MonoBehaviour {
 	public GameObject reproducirMusica;
 	public GameObject detenerMusica;
 	AudioSource reproductor;
+	
 	void Start () {
-
-		reproducirMusica.SetActive(false);
-		detenerMusica.SetActive(true);
-
 		reproductor = this.gameObject.GetComponent<AudioSource>();
+
+		if(SettingsGame.sound==true){
+			Reproducir();
+			SettingsGame.sound=false;
+		}
+		else{
+			Detener();
+			SettingsGame.sound=true;
+		}
+		
 	}
 	
 	void Update(){

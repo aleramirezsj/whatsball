@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\Sonido.cs" />
      <Compile Include="Assets\Scripts\UI\PelotasEnJuego.cs" />
      <Compile Include="Assets\Scripts\UI\PelotasResaltadas.cs" />
+     <Compile Include="Assets\Scripts\UI\SettingsGame.cs" />
      <Compile Include="Assets\Scripts\VolverEscena.cs" />
      <Compile Include="Assets\Scripts\VolverInicio.cs" />
      <Compile Include="Assets\Scripts\VolverMenu.cs" />

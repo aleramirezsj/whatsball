@@ -21,7 +21,7 @@ public class ScriptHome : MonoBehaviour {
 	public GameObject pelota;*/
 	public TextMeshProUGUI txtNombreJugador;
 	public Text lblNivel;
-	public DatosJuego datosJuego;
+	private DatosJuego datosJuego;
 	public void CambiarEscenaA(string nombreEscena)
 	{
 		SceneManager.LoadScene(nombreEscena);
@@ -49,11 +49,12 @@ public class ScriptHome : MonoBehaviour {
 	    Application.Quit(); 
 	}
 	void Start () {
-		
+		//File.Delete(Application.persistentDataPath+"/DatosWhatsBall.dat");
 		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores recuperados		
 		//txtVelocidadPelotas.text=Application.persistentDataPath.ToString();
 		Screen.fullScreen = false;
 		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
+			Debug.Log("si encontró el archivo");
 			BinaryFormatter bf= new BinaryFormatter();
 			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);
 			datosJuego= (DatosJuego)bf.Deserialize(archivo);
@@ -98,9 +99,12 @@ public class ScriptHome : MonoBehaviour {
 
 	void OnDisable()
 	{
+		Debug.Log(datosJuego);
 		if (datosJuego==null){
+			Debug.Log("CReando la instancia");
 			datosJuego=new DatosJuego(txtNombreJugador.text);
 		}else{
+			Debug.Log("Creando el jugador");
 			if(datosJuego.jugadorActual.nombre.ToUpper()!=txtNombreJugador.text.ToUpper()){
 				datosJuego.recuperarOCrearJugador(txtNombreJugador.text);
 			}

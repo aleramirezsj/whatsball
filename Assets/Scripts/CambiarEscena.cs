@@ -56,9 +56,9 @@ public class CambiarEscena : MonoBehaviour {
 		//recuperados		
 		//txtVelocidadPelotas.text=Application.persistentDataPath.ToString();
 		Screen.fullScreen = false;
-		if (File.Exists(Application.persistentDataPath+"/DatosJuego.dat")){
+		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
 			BinaryFormatter bf= new BinaryFormatter();
-			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);	
+			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
 			//parametros= (ParametrosJuego)bf.Deserialize(archivo);
 			archivo.Close();
 			/*txtTamanioPelota.text=parametros.tamanioActualPelota.ToString();
@@ -100,7 +100,7 @@ public class CambiarEscena : MonoBehaviour {
 		//parametros.iniciarInmediatamente=ChkIniciarInmediatamente.isOn;
 		//parametros.continuarRebotes=chkContinuarRebotes.isOn;
 		BinaryFormatter bf= new BinaryFormatter();
-		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);	
+		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
 		//bf.Serialize(archivo,parametros);
 		archivo.Close();			
 		//Debug.Log(iniciaInmediatamente.isOn?1:0);
