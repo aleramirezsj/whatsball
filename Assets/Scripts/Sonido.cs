@@ -10,14 +10,14 @@ public class Sonido : MonoBehaviour {
 	
 	void Start () {
 		reproductor = this.gameObject.GetComponent<AudioSource>();
-
+		Debug.Log(SettingsGame.sound.ToString());
 		if(SettingsGame.sound==true){
 			Reproducir();
-			SettingsGame.sound=false;
+			//
 		}
 		else{
 			Detener();
-			SettingsGame.sound=true;
+			//
 		}
 		
 	}
@@ -29,13 +29,13 @@ public class Sonido : MonoBehaviour {
 	public void Reproducir(){
 		reproducirMusica.SetActive(false);
 		detenerMusica.SetActive(true);
-
+		SettingsGame.sound=true;
 		reproductor.Play();
 	}
 	public void Detener(){
 		reproducirMusica.SetActive(true);
 		detenerMusica.SetActive(false);
-
+		SettingsGame.sound=false;
 		reproductor.Pause();
 	}
 
