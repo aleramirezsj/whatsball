@@ -20,7 +20,7 @@ public class NivelDeJuego
     public NivelDeJuego(int nivel){
         int[] arrayTamanioPelota={4,6,6,4,4,4,2,2,2,2}; 
         int[] arrayCantidadPelotas={7,4,5,5,6,6,7,8,9,10}; 
-        int[] arrayVelocidadPelotas={20,4,5,5,6,6,7,7,8,8}; 
+        int[] arrayVelocidadPelotas={4,4,5,5,6,6,7,7,8,8}; 
         int[] arrayTiempoColor={2,4,4,4,4,3,3,3,2,2}; 
         int[] arrayCantidadResaltadas={2,1,2,2,2,3,3,3,4,5};
         bool[] arrayContinuarRebotes={false,false,false,false,false,false,false,false,false,true};
