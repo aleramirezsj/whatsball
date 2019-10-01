@@ -451,7 +451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &375897943
 RectTransform:
   m_ObjectHideFlags: 0
@@ -648,10 +648,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtNombreJugador: {fileID: 1196963188}
   lblNivel: {fileID: 12767816}
-  datosJuego:
-    jugadorActual:
-      nombre: 
-      nivelActual: 0
 --- !u!4 &767275994
 Transform:
   m_ObjectHideFlags: 0
@@ -1620,7 +1616,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1431994595}
   - component: {fileID: 1431994594}
-  - component: {fileID: 1431994593}
   - component: {fileID: 1431994596}
   - component: {fileID: 1431994597}
   m_Layer: 0
@@ -1630,13 +1625,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1431994593
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1431994592}
-  m_Enabled: 0
 --- !u!20 &1431994594
 Camera:
   m_ObjectHideFlags: 0
