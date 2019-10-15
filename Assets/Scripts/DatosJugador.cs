@@ -24,4 +24,7 @@ public class DatosJugador  {
 		return niveles[nivelActual];
 	}
 
+	public void definirNivelDeJuego(int nivelSeleccionado){
+		nivelActual=nivelSeleccionado;
+	}
 }

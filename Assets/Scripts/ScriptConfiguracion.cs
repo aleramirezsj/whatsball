@@ -17,6 +17,8 @@ public class ScriptConfiguracion : MonoBehaviour {
 	public Text TxtCantidadPelotas;
 	public Text TxtCantidadResaltadas;
 	public Text TxtTamanioPelota;
+	public Dropdown dropSelectorNivel;
+
 	public void CambiarEscenaA(string nombreEscena)
 	{
 		SceneManager.LoadScene(nombreEscena);
@@ -36,18 +38,9 @@ public class ScriptConfiguracion : MonoBehaviour {
 
 			//datosJuego = new DatosJuego("hacha");
 			archivo.Close();
-			//coloco los valores recuperados en la pantalla
-			lblJugador.text=datosJuego.jugadorActual.nombre;	
-			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
-			// coloco los parametros recuperados en cada lugar que le corresponde
 			
-			NivelDeJuego nivelDeJuego = datosJuego.jugadorActual.obtenerNivelDeJuego();
-			TxtVelocidadPelotas.text = nivelDeJuego.velocidadActualPelotas.ToString();
-			TxtCantidadPelotas.text = nivelDeJuego.cantidadTotalPelotas.ToString();
-			TxtCantidadResaltadas.text = nivelDeJuego.cantidadResaltadas.ToString();
-			TxtTamanioPelota.text = nivelDeJuego.tamanioPelota.ToString();
-			TxtTiempoDeColor.text = nivelDeJuego.tiempoDeColor.ToString();
-			TxtTiempoDeInicio.text = nivelDeJuego.tiempoDeInicio.ToString();
+			
+			recuperarSeteosJugador();
 		}else{
 			Debug.Log("No encontró el archivo");
 		}
@@ -56,7 +49,7 @@ public class ScriptConfiguracion : MonoBehaviour {
 		void OnDisable()
 	{
 		Debug.Log(datosJuego);
-		if (datosJuego==null){
+		/*if (datosJuego==null){
 			Debug.Log("CReando la instancia");
 			datosJuego=new DatosJuego(lblJugador.text);
 		}else{
@@ -64,7 +57,8 @@ public class ScriptConfiguracion : MonoBehaviour {
 			if(datosJuego.jugadorActual.nombre.ToUpper()!=lblJugador.text.ToUpper()){
 				datosJuego.recuperarOCrearJugador(lblJugador.text);
 			}
-		}
+		}*/
+
 		BinaryFormatter bf= new BinaryFormatter();
 		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
 		bf.Serialize(archivo,datosJuego);
@@ -84,4 +78,27 @@ public class ScriptConfiguracion : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape)) 
 			Application.Quit(); 
 		}
+
+	public void dropSelectorNivelChanged (){
+		int nivelSeleccionado = dropSelectorNivel.value+1;
+		datosJuego.jugadorActual.definirNivelDeJuego(nivelSeleccionado);
+		recuperarSeteosJugador();
+
+		}
+
+	void recuperarSeteosJugador(){
+		//coloco los valores recuperados en la pantalla
+		lblJugador.text=datosJuego.jugadorActual.nombre;	
+		lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
+		// coloco los parametros recuperados en cada lugar que le corresponde
+		NivelDeJuego nivelDeJuego = datosJuego.jugadorActual.obtenerNivelDeJuego();
+
+		TxtVelocidadPelotas.text = nivelDeJuego.velocidadActualPelotas.ToString();
+		TxtCantidadPelotas.text = nivelDeJuego.cantidadTotalPelotas.ToString();
+		TxtCantidadResaltadas.text = nivelDeJuego.cantidadResaltadas.ToString();
+		TxtTamanioPelota.text = nivelDeJuego.tamanioPelota.ToString();
+		TxtTiempoDeColor.text = nivelDeJuego.tiempoDeColor.ToString();
+		TxtTiempoDeInicio.text = nivelDeJuego.tiempoDeInicio.ToString();
+		dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
+	}
 }

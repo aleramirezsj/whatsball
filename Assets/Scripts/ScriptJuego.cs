@@ -56,6 +56,7 @@ public class ScriptJuego : MonoBehaviour {
 			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
 		}
 		NivelDeJuego nivelDeJuego=datosJuego.jugadorActual.obtenerNivelDeJuego();
+		
 		Debug.Log("cantidad de pelotas Nivel obtenido="+nivelDeJuego.cantidadTotalPelotas.ToString());
 		cantidadTotalPelotas=nivelDeJuego.cantidadTotalPelotas;
 		tamanioActualPelota=nivelDeJuego.tamanioPelota;

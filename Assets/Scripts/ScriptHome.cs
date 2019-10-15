@@ -22,6 +22,8 @@ public class ScriptHome : MonoBehaviour {
 	public TextMeshProUGUI txtNombreJugador;
 	public Text lblNivel;
 	private DatosJuego datosJuego;
+	
+
 	public void CambiarEscenaA(string nombreEscena)
 	{
 		SceneManager.LoadScene(nombreEscena);
@@ -63,6 +65,8 @@ public class ScriptHome : MonoBehaviour {
 			//coloco los valores recuperados en la pantalla
 			txtNombreJugador.text=datosJuego.jugadorActual.nombre;	
 			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
+			
+			//dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
 			//Debug.Log("Encontró el archivo "+datosJuego.jugadores.Count);
 			/* txtTamanioPelota.text=parametros.tamanioActualPelota.ToString();
 			txtCantidadPelotas.text=parametros.cantidadTotalPelotas.ToString();
