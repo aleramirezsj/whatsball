@@ -21,8 +21,8 @@ public class CambiadorDeTiempoDeInicio : MonoBehaviour {
 		if (sldTiempoDeInicio.value!=tiempoDeInicio)
 		{
 			tiempoDeInicio=(int)sldTiempoDeInicio.value;
-			tiempoDeColor=(int)sldTiempoDeColor.value;
-			TxtTiempoDeInicio.text=(tiempoDeInicio+tiempoDeColor).ToString();
+			//tiempoDeColor=(int)sldTiempoDeColor.value;
+			TxtTiempoDeInicio.text=tiempoDeInicio.ToString();
 		}
 	}
 

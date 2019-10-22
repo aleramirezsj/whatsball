@@ -22,9 +22,9 @@ public class CambiadorDeTiempoDeColor : MonoBehaviour {
 		if (sldTiempoDeColor.value!=tiempoDeColor)
 		{
 			tiempoDeColor=(int)sldTiempoDeColor.value;
-			tiempoDeInicio=(int)sldTiempoDeInicio.value;
-			TxtTiempoDeColor.text=tiempoDeColor.ToString();
-			TxtTiempoDeInicio.text=(tiempoDeColor+tiempoDeInicio).ToString();
+			//tiempoDeInicio=(int)sldTiempoDeInicio.value;
+			//TxtTiempoDeColor.text=tiempoDeColor.ToString();
+			TxtTiempoDeInicio.text=tiempoDeColor.ToString();
 		}
 	}
 
