@@ -5,8 +5,7 @@ using UnityEngine;
 
 [Serializable]
 public class NivelDeJuego
-{
-    
+{   
     public int velocidadActualPelotas=1;
     public int cantidadTotalPelotas=2;
     public float tamanioPelota=1;

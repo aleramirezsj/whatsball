@@ -7,19 +7,41 @@ using UnityEngine.UI;
 
 public class ScriptPersonalizacion : MonoBehaviour
 {
+    public GameObject pelota;
     public Text lblJugador;
     private DatosJuego datosJuego;
     public Slider sldVelocidadPelotas;
+    public Text txtVelocidadPelotas; 
     public Slider sldTiempoDeInicio;
 	public Text TxtTiempoDeInicio;
 	public Text TxtTiempoDeColor;
     public Slider sldTiempoDeColor;
     public Slider sldCantidadPelotas;
+    public Text txtCantidadPelotas;
     public Slider sldCantidadResaltadas;
+    public Text txtCantidadResaltadas;
     public Slider sldTamanioPelota;
+    public Text txtTamanioPelota;
     public Dropdown dropSelectorNivel;
+    public Button btnGuardarVolver;
 
+    
 
+    public void GuardarSeteos(){
+        //Obtengo en nivel actual para saber en que posición debe almacenarse la config actual
+        int nivelActualJugador=datosJuego.jugadorActual.nivelActual;   
+        //construyo un objeto nivel de juego     
+        NivelDeJuego nivelDeJuego=new NivelDeJuego(nivelActualJugador);
+        //leo cada uno de los seteos en pantalla y los almaceno en las propiedades del objeto creado
+        nivelDeJuego.cantidadResaltadas=(int)sldCantidadResaltadas.value;
+        nivelDeJuego.cantidadTotalPelotas=(int)sldCantidadPelotas.value;
+        nivelDeJuego.tamanioPelota=(int)sldTamanioPelota.value;
+        nivelDeJuego.tiempoDeColor=(int)sldTiempoDeColor.value;
+        nivelDeJuego.tiempoDeInicio=(int)sldTiempoDeInicio.value;
+        nivelDeJuego.velocidadActualPelotas=(int)sldVelocidadPelotas.value;
+        //almaceno el objeto creado en el diccionario de niveles que tiene el jugador actual
+        datosJuego.jugadorActual.niveles[nivelActualJugador]=nivelDeJuego;
+    }
     public void CambiarEscenaA(string nombreEscena)
     {
         SceneManager.LoadScene(nombreEscena);
@@ -105,7 +127,23 @@ public class ScriptPersonalizacion : MonoBehaviour
         TxtTiempoDeColor.text= sldTiempoDeColor.value.ToString();
         //TxtTiempoDeInicio.text = sldTiempoDeInicio.value.ToString();
     }
+    public void sliderCantidadPelotasChanged()
+    {
 
+        txtCantidadPelotas.text= sldCantidadPelotas.value.ToString();
+        //TxtTiempoDeInicio.text = sldTiempoDeInicio.value.ToString();      
+    }
+    public void sliderTamanioPelotaChanged(){
+        txtTamanioPelota.text=sldTamanioPelota.value.ToString();
+        pelota.transform.localScale=new Vector3(sldTamanioPelota.value/2,sldTamanioPelota.value/2,sldTamanioPelota.value/2);  
+    }
+
+    public void sliderVelocidadPelotasChanged(){
+        txtVelocidadPelotas.text=sldVelocidadPelotas.value.ToString();
+    }
+    public void sliderCantidadResaltadasChanged(){
+        txtCantidadResaltadas.text=sldCantidadResaltadas.value.ToString();
+    }
     void recuperarSeteosJugador()
     {
         //coloco los valores recuperados en la pantalla
