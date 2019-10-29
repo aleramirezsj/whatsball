@@ -51,7 +51,7 @@ public class ScriptHome : MonoBehaviour {
 	    Application.Quit(); 
 	}
 	void Start () {
-		//File.Delete(Application.persistentDataPath+"/DatosWhatsBall.dat");
+		// File.Delete(Application.persistentDataPath+"/DatosWhatsBall.dat");
 		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores recuperados		
 		//txtVelocidadPelotas.text=Application.persistentDataPath.ToString();
 		Screen.fullScreen = false;
