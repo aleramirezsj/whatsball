@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Linq;
+using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using UnityEngine;
@@ -11,10 +13,10 @@ public class ScriptPersonalizacion : MonoBehaviour
     public Text lblJugador;
     private DatosJuego datosJuego;
     public Slider sldVelocidadPelotas;
-    public Text txtVelocidadPelotas; 
+    public Text txtVelocidadPelotas;
     public Slider sldTiempoDeInicio;
-	public Text TxtTiempoDeInicio;
-	public Text TxtTiempoDeColor;
+    public Text TxtTiempoDeInicio;
+    public Text TxtTiempoDeColor;
     public Slider sldTiempoDeColor;
     public Slider sldCantidadPelotas;
     public Text txtCantidadPelotas;
@@ -25,22 +27,25 @@ public class ScriptPersonalizacion : MonoBehaviour
     public Dropdown dropSelectorNivel;
     public Button btnGuardarVolver;
 
-    
+    Dictionary<string, int> dictionarySeteos = new Dictionary<string, int>();
 
-    public void GuardarSeteos(){
+    Dictionary<string, int> dictionaryActual = new Dictionary<string, int>();
+
+    public void GuardarSeteos()
+    {
         //Obtengo en nivel actual para saber en que posición debe almacenarse la config actual
-        int nivelActualJugador=datosJuego.jugadorActual.nivelActual;   
+        int nivelActualJugador = datosJuego.jugadorActual.nivelActual;
         //construyo un objeto nivel de juego     
-        NivelDeJuego nivelDeJuego=new NivelDeJuego(nivelActualJugador);
+        NivelDeJuego nivelDeJuego = new NivelDeJuego(nivelActualJugador);
         //leo cada uno de los seteos en pantalla y los almaceno en las propiedades del objeto creado
-        nivelDeJuego.cantidadResaltadas=(int)sldCantidadResaltadas.value;
-        nivelDeJuego.cantidadTotalPelotas=(int)sldCantidadPelotas.value;
-        nivelDeJuego.tamanioPelota=(int)sldTamanioPelota.value;
-        nivelDeJuego.tiempoDeColor=(int)sldTiempoDeColor.value;
-        nivelDeJuego.tiempoDeInicio=(int)sldTiempoDeInicio.value;
-        nivelDeJuego.velocidadActualPelotas=(int)sldVelocidadPelotas.value;
+        nivelDeJuego.cantidadResaltadas = (int)sldCantidadResaltadas.value;
+        nivelDeJuego.cantidadTotalPelotas = (int)sldCantidadPelotas.value;
+        nivelDeJuego.tamanioPelota = (int)sldTamanioPelota.value;
+        nivelDeJuego.tiempoDeColor = (int)sldTiempoDeColor.value;
+        nivelDeJuego.tiempoDeInicio = (int)sldTiempoDeInicio.value;
+        nivelDeJuego.velocidadActualPelotas = (int)sldVelocidadPelotas.value;
         //almaceno el objeto creado en el diccionario de niveles que tiene el jugador actual
-        datosJuego.jugadorActual.niveles[nivelActualJugador]=nivelDeJuego;
+        datosJuego.jugadorActual.niveles[nivelActualJugador] = nivelDeJuego;
     }
     public void CambiarEscenaA(string nombreEscena)
     {
@@ -67,6 +72,7 @@ public class ScriptPersonalizacion : MonoBehaviour
 
 
             recuperarSeteosJugador();
+            ListenerControls();
         }
         else
         {
@@ -115,34 +121,38 @@ public class ScriptPersonalizacion : MonoBehaviour
 
     }
 
-	public void sliderTiempoDeInicioChanged(){
-        
+    public void sliderTiempoDeInicioChanged()
+    {
+
         //tiempoDeColor=(int)sldTiempoDeColor.value;
         TxtTiempoDeInicio.text = sldTiempoDeInicio.value.ToString();
-	}
+    }
 
     public void sliderTiempoDeColorChanged()
     {
 
-        TxtTiempoDeColor.text= sldTiempoDeColor.value.ToString();
+        TxtTiempoDeColor.text = sldTiempoDeColor.value.ToString();
         //TxtTiempoDeInicio.text = sldTiempoDeInicio.value.ToString();
     }
     public void sliderCantidadPelotasChanged()
     {
 
-        txtCantidadPelotas.text= sldCantidadPelotas.value.ToString();
+        txtCantidadPelotas.text = sldCantidadPelotas.value.ToString();
         //TxtTiempoDeInicio.text = sldTiempoDeInicio.value.ToString();      
     }
-    public void sliderTamanioPelotaChanged(){
-        txtTamanioPelota.text=sldTamanioPelota.value.ToString();
-        pelota.transform.localScale=new Vector3(sldTamanioPelota.value/2,sldTamanioPelota.value/2,sldTamanioPelota.value/2);  
+    public void sliderTamanioPelotaChanged()
+    {
+        txtTamanioPelota.text = sldTamanioPelota.value.ToString();
+        pelota.transform.localScale = new Vector3(sldTamanioPelota.value / 2, sldTamanioPelota.value / 2, sldTamanioPelota.value / 2);
     }
 
-    public void sliderVelocidadPelotasChanged(){
-        txtVelocidadPelotas.text=sldVelocidadPelotas.value.ToString();
+    public void sliderVelocidadPelotasChanged()
+    {
+        txtVelocidadPelotas.text = sldVelocidadPelotas.value.ToString();
     }
-    public void sliderCantidadResaltadasChanged(){
-        txtCantidadResaltadas.text=sldCantidadResaltadas.value.ToString();
+    public void sliderCantidadResaltadasChanged()
+    {
+        txtCantidadResaltadas.text = sldCantidadResaltadas.value.ToString();
     }
     void recuperarSeteosJugador()
     {
@@ -152,7 +162,7 @@ public class ScriptPersonalizacion : MonoBehaviour
         NivelDeJuego nivelDeJuego = datosJuego.jugadorActual.obtenerNivelDeJuego();
 
         //TxtVelocidadPelotas.text = nivelDeJuego.velocidadActualPelotas.ToString();
-		sldVelocidadPelotas.value = nivelDeJuego.velocidadActualPelotas;
+        sldVelocidadPelotas.value = nivelDeJuego.velocidadActualPelotas;
         //TxtCantidadPelotas.text = nivelDeJuego.cantidadTotalPelotas.ToString();
         sldCantidadPelotas.value = nivelDeJuego.cantidadTotalPelotas;
         //TxtCantidadResaltadas.text = nivelDeJuego.cantidadResaltadas.ToString();
@@ -164,5 +174,66 @@ public class ScriptPersonalizacion : MonoBehaviour
         //TxtTiempoDeInicio.text = nivelDeJuego.tiempoDeInicio.ToString();
         sldTiempoDeInicio.value = nivelDeJuego.tiempoDeInicio;
         dropSelectorNivel.value = datosJuego.jugadorActual.nivelActual - 1;
+
+        // if (!dictionarySeteos.ContainsKey(sldVelocidadPelotas) && !dictionarySeteos.ContainsKey(sldCantidadPelotas) && !dictionarySeteos.ContainsKey(sldCantidadResaltadas) && !dictionarySeteos.ContainsKey(sldTamanioPelota) && !dictionarySeteos.ContainsKey(sldTiempoDeColor) && !dictionarySeteos.ContainsKey(sldTiempoDeInicio))
+        // {
+        //     dictionarySeteos.Add(sldVelocidadPelotas, sldVelocidadPelotas.value);
+        //     dictionarySeteos.Add(sldCantidadPelotas, sldCantidadPelotas.value);
+        //     dictionarySeteos.Add(sldCantidadResaltadas, sldCantidadResaltadas.value);
+        //     dictionarySeteos.Add(sldTamanioPelota, sldTamanioPelota.value);
+        //     dictionarySeteos.Add(sldTiempoDeColor, sldTiempoDeColor.value);
+        //     dictionarySeteos.Add(sldTiempoDeInicio, sldTiempoDeInicio.value);
+        // }
+
+        dictionarySeteos.Clear();
+        dictionarySeteos.Add(sldVelocidadPelotas.name, (int)sldVelocidadPelotas.value);
+        dictionarySeteos.Add(sldCantidadPelotas.name, (int)sldCantidadPelotas.value);
+        dictionarySeteos.Add(sldCantidadResaltadas.name, (int)sldCantidadResaltadas.value);
+        dictionarySeteos.Add(sldTamanioPelota.name, (int)sldTamanioPelota.value);
+        dictionarySeteos.Add(sldTiempoDeColor.name, (int)sldTiempoDeColor.value);
+        dictionarySeteos.Add(sldTiempoDeInicio.name, (int)sldTiempoDeInicio.value);
+    }
+
+    void ValueChangeCheck()
+    {
+        dictionaryActual.Clear();
+        dictionaryActual.Add(sldVelocidadPelotas.name, (int)sldVelocidadPelotas.value);
+        dictionaryActual.Add(sldCantidadPelotas.name, (int)sldCantidadPelotas.value);
+        dictionaryActual.Add(sldCantidadResaltadas.name, (int)sldCantidadResaltadas.value);
+        dictionaryActual.Add(sldTamanioPelota.name, (int)sldTamanioPelota.value);
+        dictionaryActual.Add(sldTiempoDeColor.name, (int)sldTiempoDeColor.value);
+        dictionaryActual.Add(sldTiempoDeInicio.name, (int)sldTiempoDeInicio.value);
+
+        int c = 0;
+        foreach (KeyValuePair<string, int> kvp in dictionarySeteos)
+        {
+
+            // var elemento = dictionaryActual[kvp.Key];
+            if (kvp.Value != dictionaryActual[kvp.Key])
+            {
+                c++;
+            }
+        }
+
+        if (c > 0)
+        {
+            btnGuardarVolver.interactable = true;
+        }
+        else
+        {
+            btnGuardarVolver.interactable = false;
+        }
+
+    }
+
+    void ListenerControls()
+    {
+        sldVelocidadPelotas.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        sldCantidadPelotas.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        sldCantidadResaltadas.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        sldTamanioPelota.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        sldTiempoDeColor.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        sldTiempoDeInicio.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        dropSelectorNivel.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
     }
 }
