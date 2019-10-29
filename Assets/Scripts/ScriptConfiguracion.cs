@@ -18,6 +18,7 @@ public class ScriptConfiguracion : MonoBehaviour {
 	public Text TxtCantidadResaltadas;
 	public Text TxtTamanioPelota;
 	public Dropdown dropSelectorNivel;
+	public GameObject pelota;
 
 	public void CambiarEscenaA(string nombreEscena)
 	{
@@ -83,7 +84,7 @@ public class ScriptConfiguracion : MonoBehaviour {
 		int nivelSeleccionado = dropSelectorNivel.value+1;
 		datosJuego.jugadorActual.definirNivelDeJuego(nivelSeleccionado);
 		recuperarSeteosJugador();
-
+		/*JOAQUIN*/ pelota.transform.localScale=new Vector3(int.Parse(TxtTamanioPelota.text)/2,int.Parse(TxtTamanioPelota.text)/2,int.Parse(TxtTamanioPelota.text)/2);
 		}
 
 	void recuperarSeteosJugador(){
