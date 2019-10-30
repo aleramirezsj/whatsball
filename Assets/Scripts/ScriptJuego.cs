@@ -47,8 +47,10 @@ public class ScriptJuego : MonoBehaviour {
 	public Text lblTiempoPromedio;
 	public Text lblTotalErrores;
 	public Text lblPromedioErrores;
+	public Text lblIteracion;
 
 	void Start () {
+		lblIteracion.text=(tiemposRegistrados.Count+1).ToString();
 		activarDesactivarResumen(false);
 		if (nivelDeJuego==null){
 			//Apagamos la etiqueta Toque para continuar
@@ -96,8 +98,8 @@ public class ScriptJuego : MonoBehaviour {
 				totalErrores+=valor;
 			}
 		}
-		lblTiempoTotal.text="Tiempo total:"+string.Format("{000:00.00}", totalTiempo);
-		lblTiempoPromedio.text="Tiempo promedio:"+string.Format("{000:00.00}", totalTiempo/10);
+		lblTiempoTotal.text="Tiempo total:"+string.Format("{000:00.000}", totalTiempo);
+		lblTiempoPromedio.text="Tiempo promedio:"+string.Format("{000:00.000}", totalTiempo/10);
 		lblTotalErrores.text="Total errores:"+totalErrores.ToString();
 		lblPromedioErrores.text="Promedio errores:"+(totalErrores/10).ToString();
 
@@ -121,6 +123,7 @@ public class ScriptJuego : MonoBehaviour {
 					tiemposRegistrados.Clear();
 					totalErroresRegistrados.Clear();
 				}
+				lblIteracion.text=(tiemposRegistrados.Count+1).ToString();
 				tiempoRegistrado=0;
 				txtTiempoDeInicio.enabled=true;
 				foreach(GameObject pelo in pelotasEnElJuego){
@@ -132,7 +135,7 @@ public class ScriptJuego : MonoBehaviour {
 						multiY=-1;
 					//saco el valor 0 y el valor máximo como posibles resultados porque el movimiento de la pelota no tendría ninguna 
 					//inclinación (el valor máximo siempre es excluido de los resultados en Random.Range)
-					int velocidadXAleatoria=UnityEngine.Random.Range(1,velocidadPelotasActual);	
+					int velocidadXAleatoria=UnityEngine.Random.Range(1,velocidadPelotasActual*2);	
 					int velocidadYAleatoria=velocidadPelotasActual-velocidadXAleatoria;
 					pelo.GetComponent<Rigidbody2D>().velocity=new Vector2(velocidadXAleatoria*multiX,velocidadYAleatoria*multiY);
 				}				
@@ -165,7 +168,7 @@ public class ScriptJuego : MonoBehaviour {
 			txtTiempoDeInicio.text=(tiempoDeInicio+tiempoDeColor-segundos).ToString();
 		else
 		{
-			txtTiempoDeInicio.text=string.Format("{000:00.00}", tiempoRegistrado);
+			txtTiempoDeInicio.text=string.Format("{000:00.000}", tiempoRegistrado);
 
 		}
 	}
