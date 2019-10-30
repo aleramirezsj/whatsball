@@ -42,9 +42,14 @@ public class ScriptJuego : MonoBehaviour {
 	public static float tiempoRegistrado=0;
 	public static bool establecerColorOriginal;
 	public static bool detenerMovimiento;
-
+	public Text lblResumen;
+	public Text lblTiempoTotal;
+	public Text lblTiempoPromedio;
+	public Text lblTotalErrores;
+	public Text lblPromedioErrores;
 
 	void Start () {
+		activarDesactivarResumen(false);
 		if (nivelDeJuego==null){
 			//Apagamos la etiqueta Toque para continuar
 			lblToqueParaContinuar.enabled=false;
@@ -73,6 +78,30 @@ public class ScriptJuego : MonoBehaviour {
 		}
 
 	}
+	void activarDesactivarResumen(bool value){
+		lblResumen.enabled=value;
+		lblTiempoTotal.enabled=value;
+		lblTiempoPromedio.enabled=value;
+		lblTotalErrores.enabled=value;
+		lblPromedioErrores.enabled=value;
+		float totalTiempo=0;
+		float totalErrores=0;
+		if(tiemposRegistrados.Count>0){
+			foreach(float valor in tiemposRegistrados){
+				totalTiempo+=valor;
+			}
+		}
+		if(totalErroresRegistrados.Count>0){
+			foreach(int valor in totalErroresRegistrados){
+				totalErrores+=valor;
+			}
+		}
+		lblTiempoTotal.text="Tiempo total:"+string.Format("{000:00.00}", totalTiempo);
+		lblTiempoPromedio.text="Tiempo promedio:"+string.Format("{000:00.00}", totalTiempo/10);
+		lblTotalErrores.text="Total errores:"+totalErrores.ToString();
+		lblPromedioErrores.text="Promedio errores:"+(totalErrores/10).ToString();
+
+	}
 	 void OnEnable()
 	{
 
@@ -87,6 +116,11 @@ public class ScriptJuego : MonoBehaviour {
 			if(Input.GetMouseButtonDown(0))
 			{
 				lblToqueParaContinuar.enabled=false;
+				if(tiemposRegistrados.Count==10){
+					activarDesactivarResumen(false);
+					tiemposRegistrados.Clear();
+					totalErroresRegistrados.Clear();
+				}
 				tiempoRegistrado=0;
 				txtTiempoDeInicio.enabled=true;
 				foreach(GameObject pelo in pelotasEnElJuego){
@@ -158,6 +192,9 @@ public class ScriptJuego : MonoBehaviour {
 				tiempoRegistrado=((segundos-1)-(tiempoDeInicio+tiempoDeColor))+contadorDeSegundos;
 				tiemposRegistrados.Add(tiempoRegistrado);
 				totalErroresRegistrados.Add(erroresRegistrados);
+				if (tiemposRegistrados.Count==10){
+					activarDesactivarResumen(true);
+				}
 				erroresRegistrados=0;
 				txtTiempoDeInicio.enabled=true;
 				lblToqueParaContinuar.enabled=true;
