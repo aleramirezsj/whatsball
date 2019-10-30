@@ -108,7 +108,7 @@ public class ScriptHome : MonoBehaviour {
 			Debug.Log("CReando la instancia");
 			datosJuego=new DatosJuego(txtNombreJugador.text);
 		}else{
-			Debug.Log("Creando el jugador");
+			Debug.Log("Recuperando o creando al jugador");
 			if(datosJuego.jugadorActual.nombre.ToUpper()!=txtNombreJugador.text.ToUpper()){
 				datosJuego.recuperarOCrearJugador(txtNombreJugador.text);
 			}
@@ -118,8 +118,8 @@ public class ScriptHome : MonoBehaviour {
 		bf.Serialize(archivo,datosJuego);
 		archivo.Close();
 					
-		PlayerPrefs.SetString("nombreJugador",txtNombreJugador.text);
-		PlayerPrefs.SetInt("nivelActual",datosJuego.jugadorActual.nivelActual);
+		//PlayerPrefs.SetString("nombreJugador",txtNombreJugador.text);
+		//PlayerPrefs.SetInt("nivelActual",datosJuego.jugadorActual.nivelActual);
 
 	}
 	 void Update(){

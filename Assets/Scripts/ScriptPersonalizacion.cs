@@ -46,6 +46,7 @@ public class ScriptPersonalizacion : MonoBehaviour
         nivelDeJuego.velocidadActualPelotas = (int)sldVelocidadPelotas.value;
         //almaceno el objeto creado en el diccionario de niveles que tiene el jugador actual
         datosJuego.jugadorActual.niveles[nivelActualJugador] = nivelDeJuego;
+        btnGuardarVolver.interactable = false;
     }
     public void CambiarEscenaA(string nombreEscena)
     {
