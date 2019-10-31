@@ -16,7 +16,7 @@ public class ScriptJuego : MonoBehaviour {
 	public Rigidbody2D rbBall;
 	public Text lblToqueParaContinuar;
 	// fin propiedades de pantalla
-	public DatosJuego datosJuego;
+	public static DatosJuego datosJuego;
 	private int cantidadTotalPelotas;
 	private float tamanioActualPelota;
 	private int velocidadPelotasActual;
@@ -36,6 +36,7 @@ public class ScriptJuego : MonoBehaviour {
 	public static bool esNecesarioVolver=false;
 	public static bool juegoIniciado= false;
 	public static NivelDeJuego nivelDeJuego;
+	public static DatosRendimientos datosRendimientos;
 	public static List<float> tiemposRegistrados=new List<float>();
 	public static List<int> totalErroresRegistrados=new List<int>();
 	public static int erroresRegistrados=0;
@@ -48,36 +49,46 @@ public class ScriptJuego : MonoBehaviour {
 	public Text lblTotalErrores;
 	public Text lblPromedioErrores;
 	public Text lblIteracion;
+	public Text lblRendimientoAlmacenado;
+	public static bool primeraEjecucion=true;
 
 	void Start () {
+		Debug.Log("ejecutando Start");
+		lblRendimientoAlmacenado.enabled=false;
+		tiemposRegistrados.Clear();
 		lblIteracion.text=(tiemposRegistrados.Count+1).ToString();
 		activarDesactivarResumen(false);
-		if (nivelDeJuego==null){
-			//Apagamos la etiqueta Toque para continuar
-			lblToqueParaContinuar.enabled=false;
+		
+		//Apagamos la etiqueta Toque para continuar
+		lblToqueParaContinuar.enabled=false;
 
-			
-			if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
-				BinaryFormatter bf= new BinaryFormatter();
-				FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
-				datosJuego= (DatosJuego)bf.Deserialize(archivo);
-				archivo.Close();
-				//coloco los valores recuperados en la pantalla
-				lblJugador.text=datosJuego.jugadorActual.nombre;	
-				lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
-			}
-			nivelDeJuego=datosJuego.jugadorActual.obtenerNivelDeJuego();
-			cantidadTotalPelotas=nivelDeJuego.cantidadTotalPelotas;
-			tamanioActualPelota=nivelDeJuego.tamanioPelota;
-			velocidadPelotasActual=nivelDeJuego.velocidadActualPelotas;
-			iniciarInmediatamente=nivelDeJuego.iniciarInmediatamente;
-			tiempoDeColor=nivelDeJuego.tiempoDeColor;
-			tiempoDeInicio=nivelDeJuego.tiempoDeInicio;
-			continuarRebotes=nivelDeJuego.continuarRebotes;
-			cantidadResaltadas=nivelDeJuego.cantidadResaltadas;
-
-			creacionDePelotas();
+		
+		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
+			BinaryFormatter bf= new BinaryFormatter();
+			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
+			datosJuego= (DatosJuego)bf.Deserialize(archivo);
+			archivo.Close();
+			//coloco los valores recuperados en la pantalla
+			lblJugador.text=datosJuego.jugadorActual.nombre;	
+			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
 		}
+		//Debug.Log("se recupero el archivo rendimientos almacenados= "+datosJuego.jugadorActual.rendimientosNiveles.Count.ToString());
+		datosRendimientos=datosJuego.jugadorActual.obtenerRendimientos();		
+		Debug.Log("Rendimientos="+datosRendimientos.rendimientos.Count.ToString());
+		nivelDeJuego=datosJuego.jugadorActual.obtenerNivelDeJuego();
+		cantidadTotalPelotas=nivelDeJuego.cantidadTotalPelotas;
+		tamanioActualPelota=nivelDeJuego.tamanioPelota;
+		velocidadPelotasActual=nivelDeJuego.velocidadActualPelotas;
+		iniciarInmediatamente=nivelDeJuego.iniciarInmediatamente;
+		tiempoDeColor=nivelDeJuego.tiempoDeColor;
+		tiempoDeInicio=nivelDeJuego.tiempoDeInicio;
+		continuarRebotes=nivelDeJuego.continuarRebotes;
+		cantidadResaltadas=nivelDeJuego.cantidadResaltadas;
+		if(primeraEjecucion){
+			creacionDePelotas();
+			primeraEjecucion=false;
+		}
+		
 
 	}
 	void activarDesactivarResumen(bool value){
@@ -98,8 +109,8 @@ public class ScriptJuego : MonoBehaviour {
 				totalErrores+=valor;
 			}
 		}
-		lblTiempoTotal.text="Tiempo total:"+string.Format("{000:00.000}", totalTiempo);
-		lblTiempoPromedio.text="Tiempo promedio:"+string.Format("{000:00.000}", totalTiempo/10);
+		lblTiempoTotal.text="Tiempo total:"+string.Format("{000:00.00}", totalTiempo);
+		lblTiempoPromedio.text="Tiempo promedio:"+string.Format("{000:00.00}", totalTiempo/10);
 		lblTotalErrores.text="Total errores:"+totalErrores.ToString();
 		lblPromedioErrores.text="Promedio errores:"+(totalErrores/10).ToString();
 
@@ -110,6 +121,7 @@ public class ScriptJuego : MonoBehaviour {
 	}	
 	// Update is called once per frame
 	void FixedUpdate () {
+		//Debug.Log("se recupero el archivo rendimientos almacenados= "+datosJuego.jugadorActual.rendimientosNiveles.Count.ToString());
 		if (!juegoIniciado && !esNecesarioVolver)
 		{
 			//detecto la pulsación del mouse que inicia el juego y le doy a cada una de las pelotas
@@ -117,6 +129,7 @@ public class ScriptJuego : MonoBehaviour {
 			segundos=0;
 			if(Input.GetMouseButtonDown(0))
 			{
+				lblRendimientoAlmacenado.enabled=false;
 				lblToqueParaContinuar.enabled=false;
 				if(tiemposRegistrados.Count==10){
 					activarDesactivarResumen(false);
@@ -168,17 +181,37 @@ public class ScriptJuego : MonoBehaviour {
 			txtTiempoDeInicio.text=(tiempoDeInicio+tiempoDeColor-segundos).ToString();
 		else
 		{
-			txtTiempoDeInicio.text=string.Format("{000:00.000}", tiempoRegistrado);
+			txtTiempoDeInicio.text=string.Format("{000:00.00}", tiempoRegistrado);
 
 		}
 	}
 
+	//este método intentará almacenar el rendimiento actual, en realidad  la clase DatosRendimientos tomará la decisión de almacenarlo si es uno de los 10 mejores tiempos del jugador para el nivel actual
+	void almacenarElRendimientoActual(){
+		Debug.Log("ejecutando almacenamiento Actual");
+		
+		Rendimiento rendimiento=new Rendimiento();
+		rendimiento.tiempo=tiempoRegistrado;
+		rendimiento.errores=erroresRegistrados;
+		//datosRendimientos.rendimientos.Add(rendimiento);
+		if(datosRendimientos.AlmacenarSiCorresponde(rendimiento)){
+			//si me devolvió verdadero significa que es un rendimiento que se almacenó, por eso lo guardo en la estructura de objetos que almacena todos los datos del juego*/
+			datosJuego.jugadorActual.rendimientosNiveles[datosJuego.jugadorActual.nivelActual]=datosRendimientos;
+			lblRendimientoAlmacenado.enabled=true;
+			
+		}
+		Debug.Log("Rendimientos="+datosRendimientos.rendimientos.Count.ToString());
+	}
 	void OnDisable(){
-		nivelDeJuego=null;
+		primeraEjecucion=true;
 		instancias=0;
 		juegoIniciado=false;
 		esNecesarioVolver=false;
 		cantidadEncontradas=0;
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream archivo = File.Open(Application.persistentDataPath + "/DatosWhatsBall.dat", FileMode.OpenOrCreate);
+        bf.Serialize(archivo, datosJuego);
+        archivo.Close();		
 	}
 	void OnMouseDown ()
     {
@@ -197,6 +230,8 @@ public class ScriptJuego : MonoBehaviour {
 				totalErroresRegistrados.Add(erroresRegistrados);
 				if (tiemposRegistrados.Count==10){
 					activarDesactivarResumen(true);
+					//Debug.Log(datosJuego.jugadorActual.rendimientos.Count.ToString());
+					almacenarElRendimientoActual();
 				}
 				erroresRegistrados=0;
 				txtTiempoDeInicio.enabled=true;
