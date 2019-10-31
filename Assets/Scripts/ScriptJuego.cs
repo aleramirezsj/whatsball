@@ -216,7 +216,7 @@ public class ScriptJuego : MonoBehaviour {
 	void OnMouseDown ()
     {
 		GameObject pelotaPresionada=gameObject.GetComponent<ScriptJuego>().pelota;
-		if (pelotaPresionada.tag=="Resaltada"&& juegoIniciado && segundos>=tiempoDeColor+tiempoDeInicio)
+		if (pelotaPresionada.tag=="Resaltada"&& juegoIniciado && segundos>tiempoDeColor+tiempoDeInicio && pelotaPresionada.GetComponent<Renderer>().material.color!=Color.red)
 		{
 			pelotaPresionada.GetComponent<Renderer>().material.color=Color.red;			
 			cantidadEncontradas++;
@@ -247,7 +247,7 @@ public class ScriptJuego : MonoBehaviour {
 				reubicarLasPelotasActuales();	
 			}
 				
-		}else if(juegoIniciado && segundos>=tiempoDeColor+tiempoDeInicio){
+		}else if(juegoIniciado && segundos>=tiempoDeColor+tiempoDeInicio&&pelotaPresionada.tag!="Resaltada"){
 			pelotaPresionada.GetComponent<Renderer>().material.color=Color.gray;
 			erroresRegistrados++;	
 		}
