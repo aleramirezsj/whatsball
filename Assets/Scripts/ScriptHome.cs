@@ -8,108 +8,87 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ScriptHome : MonoBehaviour {
-	/*public Text txtTamanioPelota;
-	public Text txtVelocidadPelotas;
-	public Text txtCantidadPelotas;
-	public Text txtCantidadResaltadas;
-	public Text txtTiempoDeColor;
-	public Text txtTiempoDeInicio;
-	
-	public Toggle ChkIniciarInmediatamente;
-	public Component lstJugadores;
-	public Toggle chkContinuarRebotes;
-	public GameObject pelota;*/
+
 	public TextMeshProUGUI txtNombreJugador;
 	public Text lblNivel;
+
+	public Dropdown dropSelectorJugador;
 	private DatosJuego datosJuego;
+	private int indexJugadorSeleccionado;
 	
 
 	public void CambiarEscenaA(string nombreEscena)
 	{
+		almacenarArchivoDeDatos();
 		SceneManager.LoadScene(nombreEscena);
-
-		/* //prepara elementos para guardar en disco las configuraciones actuales del juego para poder recuperarlas en la próxima ejecución
-		BinaryFormatter bf= new BinaryFormatter();
-		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);
-
-		ParametrosJuego parametros=new ParametrosJuego();	
-		parametros.cantidadTotalPelotas=(int)sldCantidadPelotas.value;	
-		parametros.cantidadResaltadas=(int)sldCantidadResaltadas.value;
-		parametros.tamanioActualPelota=sldTamanioPelota.value;
-		parametros.velocidadActualPelotas=(int)sldVelocidadPelotas.value;
-		parametros.jugadorActual=infNombreJugador.text;
-		//parametros.jugadores.Add(infNombreJugador.text);
-		parametros.iniciarInmediatamente=iniciaInmediatamente.isOn;
-		parametros.tiempoDeColor=(int)sldTiempoDeColor.value;
-		parametros.tiempoDeInicio=(int)sldTiempoDeInicio.value;
-		parametros.continuarRebotes=chkContinuarRebotes.isOn;
-		bf.Serialize(archivo,parametros);
-		archivo.Close();*/
 	}
 
 	public void salir(){
 	    Application.Quit(); 
 	}
 	void Start () {
+		txtNombreJugador.enabled=false;
 		//File.Delete(Application.persistentDataPath+"/DatosWhatsBall.dat");
 		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores recuperados		
-		//txtVelocidadPelotas.text=Application.persistentDataPath.ToString();
 		Screen.fullScreen = false;
 		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
 			Debug.Log("si encontró el archivo");
 			BinaryFormatter bf= new BinaryFormatter();
 			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);
 			datosJuego= (DatosJuego)bf.Deserialize(archivo);
-			//datosJuego = new DatosJuego("hacha");
-			archivo.Close();
-			//coloco los valores recuperados en la pantalla
-			txtNombreJugador.text=datosJuego.jugadorActual.nombre;	
+			archivo.Close();	
 			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
-			
-			//dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
-			//Debug.Log("Encontró el archivo "+datosJuego.jugadores.Count);
-			/* txtTamanioPelota.text=parametros.tamanioActualPelota.ToString();
-			txtCantidadPelotas.text=parametros.cantidadTotalPelotas.ToString();
-			txtCantidadResaltadas.text=parametros.cantidadResaltadas.ToString();
-			Debug.Log("Resaltadas:"+parametros.cantidadResaltadas);
-			txtVelocidadPelotas.text=parametros.velocidadActualPelotas.ToString();	
-			lblNombreJugador.text=parametros.jugadorActual;	
-			ChkIniciarInmediatamente.isOn=parametros.iniciarInmediatamente;
-			txtTiempoDeColor.text=parametros.tiempoDeColor.ToString();
-			txtTiempoDeInicio.text=(parametros.tiempoDeInicio+parametros.tiempoDeColor).ToString();
-			chkContinuarRebotes.isOn=parametros.continuarRebotes;
-			pelota.transform.localScale=new Vector3(parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2);
-			//txtVelocidadPelotas.text="SI";*/
-		}else{
-			Debug.Log("No encontró el archivo");
-			/*txtTamanioPelota.text="5";
-			txtCantidadResaltadas.text="1";
-			txtCantidadPelotas.text="5";
-			txtVelocidadPelotas.text="5";
-			txtTiempoDeInicio.text="5";
-			txtTiempoDeColor.text="5";
+			int indexActual=1;
+			dropSelectorJugador.ClearOptions();
+			dropSelectorJugador.options.Add(new Dropdown.OptionData());
+			if(datosJuego.jugadores.Count>0){
+				foreach(KeyValuePair<string,DatosJugador> jugador in datosJuego.jugadores){	
+					dropSelectorJugador.options.Add(new Dropdown.OptionData(jugador.Key));
+					if(jugador.Key==datosJuego.jugadorActual.nombre.ToUpper())
+						this.indexJugadorSeleccionado=indexActual;
+					indexActual++;
+				}
+				dropSelectorJugador.value=this.indexJugadorSeleccionado;
+				
+			}
 
-			PlayerPrefs.SetString("nombreJugador","Jugador");
-			PlayerPrefs.SetInt("cantidadTotalPelotas", 5);
-			PlayerPrefs.SetInt("cantidadResaltadas",1);
-			PlayerPrefs.SetFloat("escalaActualPelota",5);
-			PlayerPrefs.SetInt("velocidadPelotasActual", 5);
-			PlayerPrefs.SetInt("tiempoDeColor",5);
-			PlayerPrefs.SetInt("tiempoDeInicio",5);*/
+		}else{
+			txtNombreJugador.enabled=true;
+			Debug.Log("No encontró el archivo");
 		}
 		
 	}
-	
+
+	void OnEnable(){
+		dropSelectorJugador.value=this.indexJugadorSeleccionado;
+	}
 
 	void OnDisable()
 	{
-		Debug.Log(datosJuego);
+
+
+	}
+	void almacenarArchivoDeDatos(){
+		//ALTERNATIVAS QUE CONTEMPLA EL SIGUIENTE CÓDIGO
+		//1) Que no haya encontrado el archivo y por lo tanto el objeto datosJuego se igual a nulo
+		//	1.1)Además si no se definió un nombre de jugador crea un Usuario Random
+		//  con los escrito en TxtNombreJugador se crea una nueva estructura de Juego para almacenar en el 
+		//  archivo
+		//2) Si el archivo de datos fue encontrado
+		//	2.1) si no está seleccionado ningún jugador en el Drop Down
+		//		2.1.1) si no se definió un nombre de jugador crea un Usuario Random y lo coloca en 
+		//             TxtNombreJugador, con esa info crea un Jugador nuevo
 		if (datosJuego==null){
-			Debug.Log("CReando la instancia");
+			//Debug.Log("CReando la instancia"+txtNombreJugador.text.Trim().Length.ToString());
+			if(txtNombreJugador.text.Trim().Length==0)
+				txtNombreJugador.text="Usuario"+(int)Random.Range(1,1000);
 			datosJuego=new DatosJuego(txtNombreJugador.text);
 		}else{
 			Debug.Log("Recuperando o creando al jugador");
-			if(datosJuego.jugadorActual.nombre.ToUpper()!=txtNombreJugador.text.ToUpper()){
+			Debug.Log("JUGADOR SELECCIONADO"+dropSelectorJugador.captionText.text.Trim().Length.ToString());
+			if (dropSelectorJugador.captionText.text.Trim().Length==0){
+				if(txtNombreJugador.text.Trim().Length==0)
+					txtNombreJugador.text="Usuario"+(int)Random.Range(1,1000);
 				datosJuego.recuperarOCrearJugador(txtNombreJugador.text);
 			}
 		}
@@ -117,14 +96,22 @@ public class ScriptHome : MonoBehaviour {
 		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
 		bf.Serialize(archivo,datosJuego);
 		archivo.Close();
-					
-		//PlayerPrefs.SetString("nombreJugador",txtNombreJugador.text);
-		//PlayerPrefs.SetInt("nivelActual",datosJuego.jugadorActual.nivelActual);
-
 	}
-	 void Update(){
+	void Update(){
 		//musicPlayer.Play();
 		if (Input.GetKeyDown(KeyCode.Escape)) 
 			Application.Quit(); 
+	}
+
+	public void dropSelectorJugadorChanged(){
+		if(dropSelectorJugador.captionText.text.Trim().Length!=0){
+			datosJuego.recuperarOCrearJugador(dropSelectorJugador.captionText.text);
+			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
+			txtNombreJugador.enabled=false;
+			txtNombreJugador.text="";
+		}else{
+			txtNombreJugador.enabled=true;
+			//txtNombreJugador
 		}
+	}
 }
