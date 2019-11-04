@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\CambiarVelocidadPelotas.cs" />
      <Compile Include="Assets\Scripts\ComportamientoPelota.cs" />
      <Compile Include="Assets\Scripts\DatosJuego.cs" />
+     <Compile Include="Assets\Scripts\DatosJuegoHelper.cs" />
      <Compile Include="Assets\Scripts\DatosJugador.cs" />
      <Compile Include="Assets\Scripts\DatosRendimientos.cs" />
      <Compile Include="Assets\Scripts\MovimientoEnemigo.cs" />

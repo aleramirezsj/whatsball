@@ -28,19 +28,15 @@ public class ScriptHome : MonoBehaviour {
 	    Application.Quit(); 
 	}
 	void Start () {
-		lblNombreJugador.enabled=false;
-		txtNombreJugador.enabled=false;
-		txtNombreJugador.color=new Color(255,255,255,0);
+		//lblNombreJugador.enabled=false;
+		//txtNombreJugador.enabled=false;
+		//txtNombreJugador.color=new Color(255,255,255,0);
 
-		File.Delete(Application.persistentDataPath+"/DatosWhatsBall.dat");
+		//File.Delete(Application.persistentDataPath+"/DatosWhatsBall.dat");
 		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores recuperados		
 		Screen.fullScreen = false;
-		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
-			Debug.Log("si encontró el archivo");
-			BinaryFormatter bf= new BinaryFormatter();
-			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);
-			datosJuego= (DatosJuego)bf.Deserialize(archivo);
-			archivo.Close();	
+		datosJuego=DatosJuegoHelper.obtenerDesdeArchivo();
+		if(datosJuego!=null){
 			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
 			int indexActual=1;
 			dropSelectorJugador.ClearOptions();
@@ -57,11 +53,10 @@ public class ScriptHome : MonoBehaviour {
 				Debug.Log("rendimientos del jugador actual="+dr.rendimientos.Count.ToString());
 				
 			}
-
 		}else{
 			
-			//txtNombreJugador.gameObject.SetActive(true);
-			//lblNombreJugador.gameObject.SetActive(true);
+			txtNombreJugador.gameObject.SetActive(true);
+			lblNombreJugador.gameObject.SetActive(true);
 			Debug.Log("No encontró el archivo");
 		}
 		
