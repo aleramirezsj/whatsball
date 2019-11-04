@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\ParametrosJuego.cs" />
      <Compile Include="Assets\Scripts\Rendimiento.cs" />
      <Compile Include="Assets\Scripts\ScriptConfiguracion.cs" />
+     <Compile Include="Assets\Scripts\ScriptEstadisticas.cs" />
      <Compile Include="Assets\Scripts\ScriptHome.cs" />
      <Compile Include="Assets\Scripts\ScriptJuego.cs" />
      <Compile Include="Assets\Scripts\ScriptPersonalizacion.cs" />

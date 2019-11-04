@@ -10,6 +10,7 @@ using TMPro;
 public class ScriptHome : MonoBehaviour {
 
 	public TextMeshProUGUI txtNombreJugador;
+	public Text lblNombreJugador;
 	public Text lblNivel;
 
 	public Dropdown dropSelectorJugador;
@@ -27,8 +28,11 @@ public class ScriptHome : MonoBehaviour {
 	    Application.Quit(); 
 	}
 	void Start () {
+		lblNombreJugador.enabled=false;
 		txtNombreJugador.enabled=false;
-		//File.Delete(Application.persistentDataPath+"/DatosWhatsBall.dat");
+		txtNombreJugador.color=new Color(255,255,255,0);
+
+		File.Delete(Application.persistentDataPath+"/DatosWhatsBall.dat");
 		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores recuperados		
 		Screen.fullScreen = false;
 		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
@@ -49,11 +53,15 @@ public class ScriptHome : MonoBehaviour {
 					indexActual++;
 				}
 				dropSelectorJugador.value=this.indexJugadorSeleccionado;
+				DatosRendimientos dr=datosJuego.jugadorActual.rendimientosNiveles[datosJuego.jugadorActual.nivelActual];
+				Debug.Log("rendimientos del jugador actual="+dr.rendimientos.Count.ToString());
 				
 			}
 
 		}else{
-			txtNombreJugador.enabled=true;
+			
+			//txtNombreJugador.gameObject.SetActive(true);
+			//lblNombreJugador.gameObject.SetActive(true);
 			Debug.Log("No encontró el archivo");
 		}
 		

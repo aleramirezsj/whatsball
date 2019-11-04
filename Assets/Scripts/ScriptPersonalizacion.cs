@@ -176,15 +176,7 @@ public class ScriptPersonalizacion : MonoBehaviour
         sldTiempoDeInicio.value = nivelDeJuego.tiempoDeInicio;
         dropSelectorNivel.value = datosJuego.jugadorActual.nivelActual - 1;
 
-        // if (!dictionarySeteos.ContainsKey(sldVelocidadPelotas) && !dictionarySeteos.ContainsKey(sldCantidadPelotas) && !dictionarySeteos.ContainsKey(sldCantidadResaltadas) && !dictionarySeteos.ContainsKey(sldTamanioPelota) && !dictionarySeteos.ContainsKey(sldTiempoDeColor) && !dictionarySeteos.ContainsKey(sldTiempoDeInicio))
-        // {
-        //     dictionarySeteos.Add(sldVelocidadPelotas, sldVelocidadPelotas.value);
-        //     dictionarySeteos.Add(sldCantidadPelotas, sldCantidadPelotas.value);
-        //     dictionarySeteos.Add(sldCantidadResaltadas, sldCantidadResaltadas.value);
-        //     dictionarySeteos.Add(sldTamanioPelota, sldTamanioPelota.value);
-        //     dictionarySeteos.Add(sldTiempoDeColor, sldTiempoDeColor.value);
-        //     dictionarySeteos.Add(sldTiempoDeInicio, sldTiempoDeInicio.value);
-        // }
+
 
         dictionarySeteos.Clear();
         dictionarySeteos.Add(sldVelocidadPelotas.name, (int)sldVelocidadPelotas.value);

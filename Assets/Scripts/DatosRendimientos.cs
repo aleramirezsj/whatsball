@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,23 +17,25 @@ public class DatosRendimientos  {
     public bool AlmacenarSiCorresponde(Rendimiento rendimientoNuevo){
         if(rendimientos.Count<10){
             rendimientos.Add(rendimientoNuevo);
+            ordenarLosRendimientos();
             return true;
         }else{
-            Rendimiento peorRendimiento=obtenerPeorRendimiento();
+            Rendimiento peorRendimiento=obtenerPeorRendimiento(rendimientos);
             if ((rendimientoNuevo.tiempo<peorRendimiento.tiempo)||(rendimientoNuevo.tiempo==peorRendimiento.tiempo&&rendimientoNuevo.errores<peorRendimiento.errores)){
                 //borro el rendimiento menor
                 rendimientos.Remove(peorRendimiento);
                 rendimientos.Add(rendimientoNuevo);
+                ordenarLosRendimientos();
                 return true;
             }else{
                 return false;
             }
         }
     }
-    //obtengo el rendimiento con mayor tiempo y si hay 2 rendimientos con el mismo tiempo obtengo el que tenga más errores
-    private Rendimiento obtenerPeorRendimiento(){
+    //obtengo el peor rendimiento, es decir, con mayor tiempo y si hay 2 rendimientos con el mismo tiempo obtengo el que tenga más errores
+    private Rendimiento obtenerPeorRendimiento(List<Rendimiento> rendimientosAnalizados){
         Rendimiento peorRendimiento=null;
-        foreach(Rendimiento rendimiento in rendimientos){
+        foreach(Rendimiento rendimiento in rendimientosAnalizados){
             if(peorRendimiento==null)
                 peorRendimiento=rendimiento;
             else{
@@ -42,5 +45,43 @@ public class DatosRendimientos  {
 
         }
         return peorRendimiento;
+    }
+
+    private Rendimiento obtenerMejorRendimiento(List<Rendimiento> rendimientosAnalizados){
+        Rendimiento mejorRendimiento=null;
+        foreach(Rendimiento rendimiento in rendimientosAnalizados){
+            if(mejorRendimiento==null)
+                mejorRendimiento=rendimiento;
+            else{
+                if((rendimiento.tiempo<mejorRendimiento.tiempo)||(rendimiento.tiempo==mejorRendimiento.tiempo&&rendimiento.errores<mejorRendimiento.errores))
+                    mejorRendimiento=rendimiento;
+            }
+
+        }
+        return mejorRendimiento;
+    }
+
+    public string obtenerLosRendimientos(){
+        string retorno="";
+        int indice=1;
+        foreach(Rendimiento rendimiento in rendimientos){
+            retorno+=indice.ToString()+") Tiempo="+rendimiento.tiempo.ToString()+"  Errores="+rendimiento.errores.ToString()+"\n";
+            
+            indice++;
+        }
+        Debug.Log("retorno="+retorno);
+        return retorno;
+    }
+
+    public void ordenarLosRendimientos(){
+        var copiaRendimientos =(rendimientos as IEnumerable<Rendimiento>).ToList();
+        List<Rendimiento> rendimientosOrdenados=new List<Rendimiento>();
+        while(copiaRendimientos.Count>0){
+            Rendimiento mejorRendimiento=obtenerMejorRendimiento(copiaRendimientos);
+            rendimientosOrdenados.Add(mejorRendimiento);
+            copiaRendimientos.Remove(mejorRendimiento);
+        }
+        rendimientos=rendimientosOrdenados;
+        
     }
 }

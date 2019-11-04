@@ -52,6 +52,10 @@ public class ScriptJuego : MonoBehaviour {
 	public Text lblRendimientoAlmacenado;
 	public static bool primeraEjecucion=true;
 
+	private static float totalTiempo;
+	private static int totalErrores;
+	
+
 	void Start () {
 		Debug.Log("ejecutando Start");
 		lblRendimientoAlmacenado.enabled=false;
@@ -97,8 +101,8 @@ public class ScriptJuego : MonoBehaviour {
 		lblTiempoPromedio.enabled=value;
 		lblTotalErrores.enabled=value;
 		lblPromedioErrores.enabled=value;
-		float totalTiempo=0;
-		float totalErrores=0;
+		totalTiempo=0;
+		totalErrores=0;
 		if(tiemposRegistrados.Count>0){
 			foreach(float valor in tiemposRegistrados){
 				totalTiempo+=valor;
@@ -191,8 +195,8 @@ public class ScriptJuego : MonoBehaviour {
 		Debug.Log("ejecutando almacenamiento Actual");
 		
 		Rendimiento rendimiento=new Rendimiento();
-		rendimiento.tiempo=tiempoRegistrado;
-		rendimiento.errores=erroresRegistrados;
+		rendimiento.tiempo=totalTiempo;
+		rendimiento.errores=totalErrores;
 		//datosRendimientos.rendimientos.Add(rendimiento);
 		if(datosRendimientos.AlmacenarSiCorresponde(rendimiento)){
 			//si me devolvió verdadero significa que es un rendimiento que se almacenó, por eso lo guardo en la estructura de objetos que almacena todos los datos del juego*/
