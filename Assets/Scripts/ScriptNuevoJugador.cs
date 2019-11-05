@@ -11,6 +11,7 @@ public class ScriptNuevoJugador : MonoBehaviour {
 	public TextMeshProUGUI TxtNombreJugador;
 	private DatosJuego datosJuego;
 	public Dropdown dropSelectorModo;
+	public Dropdown dropSelectorDeporte;
 
 	public void CambiarEscenaA(string nombreEscena)
 	{
@@ -18,7 +19,7 @@ public class ScriptNuevoJugador : MonoBehaviour {
 		SceneManager.LoadScene(nombreEscena);
 	}
     public void CrearJugador(){
-        DatosJuegoHelper.almacenarNuevoJugador(datosJuego,TxtNombreJugador.text, (ModosEnum)dropSelectorModo.value);      
+        DatosJuegoHelper.almacenarNuevoJugador(datosJuego,TxtNombreJugador.text, (ModosEnum)dropSelectorModo.value, (DeportesEnum) dropSelectorDeporte.value);      
         CambiarEscenaA("Home");
     }
 	public void salir(){
