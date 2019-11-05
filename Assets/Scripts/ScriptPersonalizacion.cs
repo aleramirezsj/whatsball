@@ -35,6 +35,7 @@ public class ScriptPersonalizacion : MonoBehaviour
     {
         //Obtengo en nivel actual para saber en que posición debe almacenarse la config actual
         int nivelActualJugador = datosJuego.jugadorActual.nivelActual;
+        int modoActualJugador=(int)datosJuego.jugadorActual.modoActual;
         //construyo un objeto nivel de juego     
         NivelDeJuego nivelDeJuego = new NivelDeJuego();
         //leo cada uno de los seteos en pantalla y los almaceno en las propiedades del objeto creado
@@ -45,7 +46,7 @@ public class ScriptPersonalizacion : MonoBehaviour
         nivelDeJuego.tiempoDeInicio = (int)sldTiempoDeInicio.value;
         nivelDeJuego.velocidadActualPelotas = (int)sldVelocidadPelotas.value;
         //almaceno el objeto creado en el diccionario de niveles que tiene el jugador actual
-        datosJuego.jugadorActual.niveles[nivelActualJugador] = nivelDeJuego;
+        datosJuego.jugadorActual.niveles[modoActualJugador][nivelActualJugador] = nivelDeJuego;
         btnGuardarVolver.interactable = false;
     }
     public void CambiarEscenaA(string nombreEscena)
@@ -100,8 +101,6 @@ public class ScriptPersonalizacion : MonoBehaviour
         archivo.Close();
 
 
-        PlayerPrefs.SetString("nombreJugador", lblJugador.text);
-        PlayerPrefs.SetInt("nivelActual", datosJuego.jugadorActual.nivelActual);
 
 
 

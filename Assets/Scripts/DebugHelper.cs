@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class DebugHelper{
     internal static void ImprimirCantidadDeRendimientosDelJugadorActual(DatosJuego datosJuego){
-        DatosRendimientos dr=datosJuego.jugadorActual.rendimientosNiveles[datosJuego.jugadorActual.nivelActual];
+        DatosRendimientos dr=datosJuego.jugadorActual.rendimientosNiveles[(int)datosJuego.jugadorActual.modoActual][datosJuego.jugadorActual.nivelActual];
 		Debug.Log("rendimientos del jugador actual="+dr.rendimientos.Count.ToString());
     }
 

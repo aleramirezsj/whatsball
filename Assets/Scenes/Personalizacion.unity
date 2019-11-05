@@ -1427,18 +1427,22 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b420ca4889c522247b65881ce64051a5, type: 3}
-    m_FontSize: 30
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 3
+    m_MinSize: 1
     m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Tiempo de inicio de la prueba
+  m_Text: 'Tiempo de
+
+    inicio de
+
+    la prueba'
 --- !u!222 &354440868
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1663,7 +1667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 422, y: 24}
+  m_AnchoredPosition: {x: 407, y: 24.169}
   m_SizeDelta: {x: 99, y: 48.337}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &472356718
@@ -1687,18 +1691,20 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b420ca4889c522247b65881ce64051a5, type: 3}
-    m_FontSize: 30
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 3
+    m_MinSize: 1
     m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Velocidad de Pelotas
+  m_Text: 'Velocidad
+
+    de Pelotas'
 --- !u!222 &472356719
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2544,16 +2550,16 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b420ca4889c522247b65881ce64051a5, type: 3}
-    m_FontSize: 30
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 3
+    m_MinSize: 1
     m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "Tama\xF1o \nde pelota"
 --- !u!222 &768263786
@@ -3093,18 +3099,20 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b420ca4889c522247b65881ce64051a5, type: 3}
-    m_FontSize: 30
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 3
+    m_MinSize: 1
     m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Pelotas en juego
+  m_Text: 'Pelotas
+
+    en juego'
 --- !u!222 &875018861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5293,18 +5301,20 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b420ca4889c522247b65881ce64051a5, type: 3}
-    m_FontSize: 30
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 3
+    m_MinSize: 1
     m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Pelotas resaltadas
+  m_Text: 'Pelotas
+
+    resaltadas'
 --- !u!222 &1924892624
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5327,7 +5337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 438, y: -181.55}
+  m_AnchoredPosition: {x: 415, y: -176.86}
   m_SizeDelta: {x: 110.6, y: 56.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1968293572
@@ -5386,18 +5396,20 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b420ca4889c522247b65881ce64051a5, type: 3}
-    m_FontSize: 30
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 3
+    m_MinSize: 1
     m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Tiempo de resaltado
+  m_Text: 'Tiempo de
+
+    resaltado'
 --- !u!222 &1968293575
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5739,9 +5751,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 422, y: -237.88}
+  m_AnchoredPosition: {x: 422.00003, y: -253.37054}
   m_SizeDelta: {x: 21.2, y: 32.8}
-  m_Pivot: {x: 0.4999991, y: 0.77808416}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2073420788
 MonoBehaviour:
   m_ObjectHideFlags: 0

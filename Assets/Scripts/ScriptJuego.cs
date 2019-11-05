@@ -10,6 +10,7 @@ public class ScriptJuego : MonoBehaviour {
 
 	// Propiedades vinculada con elementos de la pantalla
 	public Text lblNivel;
+	public Text lblModo;
 	public Text lblJugador;
 	public Text txtTiempoDeInicio;
 	public GameObject pelota;
@@ -75,11 +76,13 @@ public class ScriptJuego : MonoBehaviour {
 			//coloco los valores recuperados en la pantalla
 			lblJugador.text=datosJuego.jugadorActual.nombre;	
 			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
+			lblModo.text="Modo "+datosJuego.jugadorActual.modoActual.ToString();
 		}
 		//Debug.Log("se recupero el archivo rendimientos almacenados= "+datosJuego.jugadorActual.rendimientosNiveles.Count.ToString());
 		datosRendimientos=datosJuego.jugadorActual.obtenerRendimientos();		
 		Debug.Log("Rendimientos="+datosRendimientos.rendimientos.Count.ToString());
 		nivelDeJuego=datosJuego.jugadorActual.obtenerNivelDeJuego();
+		
 		cantidadTotalPelotas=nivelDeJuego.cantidadTotalPelotas;
 		tamanioActualPelota=nivelDeJuego.tamanioPelota;
 		velocidadPelotasActual=nivelDeJuego.velocidadActualPelotas;
@@ -200,7 +203,7 @@ public class ScriptJuego : MonoBehaviour {
 		//datosRendimientos.rendimientos.Add(rendimiento);
 		if(datosRendimientos.AlmacenarSiCorresponde(rendimiento)){
 			//si me devolvió verdadero significa que es un rendimiento que se almacenó, por eso lo guardo en la estructura de objetos que almacena todos los datos del juego*/
-			datosJuego.jugadorActual.rendimientosNiveles[datosJuego.jugadorActual.nivelActual]=datosRendimientos;
+			datosJuego.jugadorActual.rendimientosNiveles[(int)datosJuego.jugadorActual.modoActual][datosJuego.jugadorActual.nivelActual]=datosRendimientos;
 			lblRendimientoAlmacenado.enabled=true;
 			
 		}
