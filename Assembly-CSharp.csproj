@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\DatosJugador.cs" />
      <Compile Include="Assets\Scripts\DatosRendimientos.cs" />
      <Compile Include="Assets\Scripts\DebugHelper.cs" />
+     <Compile Include="Assets\Scripts\DeportesEnum.cs" />
      <Compile Include="Assets\Scripts\ModosEnum.cs" />
      <Compile Include="Assets\Scripts\MovimientoEnemigo.cs" />
      <Compile Include="Assets\Scripts\MovimientoJugador.cs" />
