@@ -48,6 +48,7 @@ public class ScriptPersonalizacion : MonoBehaviour
         //almaceno el objeto creado en el diccionario de niveles que tiene el jugador actual
         datosJuego.jugadorActual.niveles[modoActualJugador][nivelActualJugador] = nivelDeJuego;
         btnGuardarVolver.interactable = false;
+        recuperarSeteosJugador();
     }
     public void CambiarEscenaA(string nombreEscena)
     {
@@ -161,22 +162,16 @@ public class ScriptPersonalizacion : MonoBehaviour
         // coloco los parametros recuperados en cada lugar que le corresponde
         NivelDeJuego nivelDeJuego = datosJuego.jugadorActual.obtenerNivelDeJuego();
 
-        //TxtVelocidadPelotas.text = nivelDeJuego.velocidadActualPelotas.ToString();
         sldVelocidadPelotas.value = nivelDeJuego.velocidadActualPelotas;
-        //TxtCantidadPelotas.text = nivelDeJuego.cantidadTotalPelotas.ToString();
         sldCantidadPelotas.value = nivelDeJuego.cantidadTotalPelotas;
-        //TxtCantidadResaltadas.text = nivelDeJuego.cantidadResaltadas.ToString();
         sldCantidadResaltadas.value = nivelDeJuego.cantidadResaltadas;
-        //TxtTamanioPelota.text = nivelDeJuego.tamanioPelota.ToString();
         sldTamanioPelota.value = nivelDeJuego.tamanioPelota;
-        //TxtTiempoDeColor.text = nivelDeJuego.tiempoDeColor.ToString();
         sldTiempoDeColor.value = nivelDeJuego.tiempoDeColor;
-        //TxtTiempoDeInicio.text = nivelDeJuego.tiempoDeInicio.ToString();
         sldTiempoDeInicio.value = nivelDeJuego.tiempoDeInicio;
         dropSelectorNivel.value = datosJuego.jugadorActual.nivelActual - 1;
 
 
-
+        //
         dictionarySeteos.Clear();
         dictionarySeteos.Add(sldVelocidadPelotas.name, (int)sldVelocidadPelotas.value);
         dictionarySeteos.Add(sldCantidadPelotas.name, (int)sldCantidadPelotas.value);
@@ -186,6 +181,7 @@ public class ScriptPersonalizacion : MonoBehaviour
         dictionarySeteos.Add(sldTiempoDeInicio.name, (int)sldTiempoDeInicio.value);
     }
 
+    /*Este método se dispara cada vez que un elemento de la pantalla Personalización cambia.*/
     void ValueChangeCheck()
     {
         dictionaryActual.Clear();
@@ -197,10 +193,10 @@ public class ScriptPersonalizacion : MonoBehaviour
         dictionaryActual.Add(sldTiempoDeInicio.name, (int)sldTiempoDeInicio.value);
 
         int c = 0;
+        
         foreach (KeyValuePair<string, int> kvp in dictionarySeteos)
         {
-
-            // var elemento = dictionaryActual[kvp.Key];
+            //Preguntamos si los valores de los diccionarios son iguales
             if (kvp.Value != dictionaryActual[kvp.Key])
             {
                 c++;
