@@ -55,6 +55,9 @@ public class ScriptJuego : MonoBehaviour {
 
 	private static float totalTiempo;
 	private static int totalErrores;
+	private static List<Vector3> posicionesPelotas=new List<Vector3>();
+	public static float anchoPelota;
+	public static float altoPelota;
 	
 
 	void Start () {
@@ -291,19 +294,35 @@ public class ScriptJuego : MonoBehaviour {
 
 	private Vector3 obtenerPosicionAleatoria()
     {
-		float x=UnityEngine.Random.Range(-7,7);
-		float y=UnityEngine.Random.Range(-4,4);
-		Vector3 posicionAleatoria = new Vector3(x,y,transform.position.z);    
+		Vector3 posicionAleatoria;
+		do{
+			float x=UnityEngine.Random.Range(-7,7);
+			float y=UnityEngine.Random.Range(-4,4);
+			posicionAleatoria = new Vector3(x,y,transform.position.z);    
+		}while(EncontrarPosicionSimilar(posicionAleatoria));
+		posicionesPelotas.Add(posicionAleatoria);
 		return posicionAleatoria;
 	}
 
+	private bool EncontrarPosicionSimilar(Vector3 posicionABuscar){
+		bool retorno=false;
+		foreach(Vector3 vector in posicionesPelotas){
+			if(Mathf.Abs(vector.x-posicionABuscar.x)<anchoPelota/4&&
+			Mathf.Abs(vector.y-posicionABuscar.y)<altoPelota/4){
+				retorno=true;
+			}
+		}
+		Debug.Log(retorno);
+		return retorno;
+	}
 	private void creacionDePelotas()
 	{
 			
 		//almaceno el color original en la propiedad estática y la pelota original en la lista de pelotas
 		if(instancias==0){
 			Debug.Log("creación de las pelotas");
-			pelotasEnElJuego.Clear();			
+			pelotasEnElJuego.Clear();	
+			posicionesPelotas.Clear();		
 			colorOriginal=GetComponent<Renderer>().material.color;
 			pelotasEnElJuego.Add(pelota);
 			//Creamos las pelotas comunes y resaltadas
@@ -322,8 +341,16 @@ public class ScriptJuego : MonoBehaviour {
 					
 					pelotasEnElJuego.Add(pelotaInstanciada);
 				}
-			}			
+			}	
+			CalcularAnchoYAltoPelota();		
 		}
 		
+	}
+
+	private void CalcularAnchoYAltoPelota(){
+		var p1 = pelota.gameObject.transform.TransformPoint(0, 0, 0);
+		var p2 = pelota.gameObject.transform.TransformPoint(1, 1, 0);
+		anchoPelota = p2.x - p1.x;
+		altoPelota = p2.y - p1.y;
 	}
 }
