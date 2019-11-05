@@ -48,9 +48,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Pelotas
-    uniqueID: 2377633329
-    locked: 0
   - name: Texto
     uniqueID: 2222236517
+    locked: 0
+  - name: Pelotas
+    uniqueID: 2377633329
     locked: 0
