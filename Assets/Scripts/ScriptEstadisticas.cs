@@ -39,8 +39,7 @@ public class ScriptEstadisticas : MonoBehaviour {
 			//datosJuego = new DatosJuego("hacha");
 			archivo.Close();
 			
-			dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
-			//recuperarSeteosJugador();
+			recuperarSeteosJugador();
 		}else{
 			Debug.Log("No encontró el archivo");
 		}

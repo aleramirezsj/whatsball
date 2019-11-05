@@ -438,7 +438,7 @@ RectTransform:
   m_Children:
   - {fileID: 119710010}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -960,7 +960,7 @@ Transform:
   - {fileID: 1450795422}
   - {fileID: 1393505410}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &887281076
 GameObject:
@@ -1428,7 +1428,7 @@ Transform:
   m_LocalScale: {x: 1.6367433, y: 1.6367433, z: 1.6367433}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1110673549
 CircleCollider2D:
@@ -1462,10 +1462,6 @@ MonoBehaviour:
   pelota: {fileID: 1110673545}
   rbBall: {fileID: 1110673546}
   lblToqueParaContinuar: {fileID: 1425271203}
-  datosJuego:
-    jugadorActual:
-      nombre: 
-      nivelActual: 0
   lblResumen: {fileID: 594283145}
   lblTiempoTotal: {fileID: 1954892658}
   lblTiempoPromedio: {fileID: 1035389202}
@@ -1750,7 +1746,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1243249605
 GameObject:
@@ -2245,7 +2241,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1475362851
 GameObject:

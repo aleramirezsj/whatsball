@@ -8,19 +8,22 @@ public class DatosJugador  {
 
 	public string nombre;
 	public int nivelActual;
+	public ModosEnum modoActual;
 	public Dictionary<int,NivelDeJuego> niveles=new Dictionary<int,NivelDeJuego>();
 	public Dictionary<int,DatosRendimientos> rendimientosNiveles=new Dictionary<int, DatosRendimientos>();
 
-	public DatosJugador(string nombreJugador){
+
+	public DatosJugador(string nombreJugador, ModosEnum modo){
 		nombre=nombreJugador;
 		nivelActual=1;
+		modoActual=modo;
 		//Creamos los 10 niveles de juego para el jugador
 		for(int i=1;i<11;i++){
-			niveles.Add(i,new NivelDeJuego(i));
+			niveles.Add(i,new NivelDeJuego(i,(int)modo));
 			rendimientosNiveles.Add(i, new DatosRendimientos());
 		}
 		Debug.Log("se creo el usuario "+nombreJugador+" DatosRendimientos:"+rendimientosNiveles.Count.ToString());
-	}
+	}	
 
 
 	public NivelDeJuego obtenerNivelDeJuego(){
@@ -33,5 +36,17 @@ public class DatosJugador  {
 
 	public DatosRendimientos obtenerRendimientos(){
 		return rendimientosNiveles[nivelActual];
+	}
+	public void CambiarDeModo(ModosEnum modo){
+		if(modoActual!=modo){
+			modoActual=modo;
+			nivelActual=1;
+			niveles.Clear();
+			rendimientosNiveles.Clear();
+			for(int i=1;i<11;i++){
+				niveles.Add(i,new NivelDeJuego(i,(int)modo));
+				rendimientosNiveles.Add(i, new DatosRendimientos());
+			}		
+		}
 	}
 }

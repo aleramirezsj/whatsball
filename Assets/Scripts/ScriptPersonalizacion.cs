@@ -36,7 +36,7 @@ public class ScriptPersonalizacion : MonoBehaviour
         //Obtengo en nivel actual para saber en que posición debe almacenarse la config actual
         int nivelActualJugador = datosJuego.jugadorActual.nivelActual;
         //construyo un objeto nivel de juego     
-        NivelDeJuego nivelDeJuego = new NivelDeJuego(nivelActualJugador);
+        NivelDeJuego nivelDeJuego = new NivelDeJuego();
         //leo cada uno de los seteos en pantalla y los almaceno en las propiedades del objeto creado
         nivelDeJuego.cantidadResaltadas = (int)sldCantidadResaltadas.value;
         nivelDeJuego.cantidadTotalPelotas = (int)sldCantidadPelotas.value;

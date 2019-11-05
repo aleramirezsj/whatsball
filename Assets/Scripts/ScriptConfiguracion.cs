@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 public class ScriptConfiguracion : MonoBehaviour {
 	public Text lblJugador;
-	public Text lblNivel;
 	private DatosJuego datosJuego;
 	public Text TxtVelocidadPelotas;
 	public Text TxtTiempoDeInicio;
@@ -18,6 +17,7 @@ public class ScriptConfiguracion : MonoBehaviour {
 	public Text TxtCantidadResaltadas;
 	public Text TxtTamanioPelota;
 	public Dropdown dropSelectorNivel;
+	public Dropdown dropSelectorModo;
 	public GameObject pelota;
 
 	public void CambiarEscenaA(string nombreEscena)
@@ -31,46 +31,24 @@ public class ScriptConfiguracion : MonoBehaviour {
 	void Start () {
 		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores recuperados		
 		Screen.fullScreen = false;
-		if (File.Exists(Application.persistentDataPath+"/DatosWhatsBall.dat")){
-			Debug.Log("si encontró el archivo");
-			BinaryFormatter bf= new BinaryFormatter();
-			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);
-			datosJuego= (DatosJuego)bf.Deserialize(archivo);
-
-			//datosJuego = new DatosJuego("hacha");
-			archivo.Close();
-			
-			
+		datosJuego=DatosJuegoHelper.ObtenerDesdeArchivo();
+		if(datosJuego!=null){
 			recuperarSeteosJugador();
+			dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
+			dropSelectorModo.value=(int)datosJuego.jugadorActual.modoActual;
 		}else{
 			Debug.Log("No encontró el archivo");
 		}
 	}
 
-		void OnDisable()
+	void OnDisable()
 	{
-		Debug.Log(datosJuego);
-		/*if (datosJuego==null){
-			Debug.Log("CReando la instancia");
-			datosJuego=new DatosJuego(lblJugador.text);
-		}else{
-			Debug.Log("Creando el jugador");
-			if(datosJuego.jugadorActual.nombre.ToUpper()!=lblJugador.text.ToUpper()){
-				datosJuego.recuperarOCrearJugador(lblJugador.text);
-			}
-		}*/
-
 		BinaryFormatter bf= new BinaryFormatter();
 		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosWhatsBall.dat",FileMode.OpenOrCreate);	
 		bf.Serialize(archivo,datosJuego);
 		archivo.Close();
 		
 		
-		PlayerPrefs.SetString("nombreJugador",lblJugador.text);
-		PlayerPrefs.SetInt("nivelActual",datosJuego.jugadorActual.nivelActual);
-		
-
-
 	}
 	// Update is called once per frame
 	void Update () 
@@ -81,16 +59,21 @@ public class ScriptConfiguracion : MonoBehaviour {
 		}
 
 	public void dropSelectorNivelChanged (){
-		int nivelSeleccionado = dropSelectorNivel.value+1;
-		datosJuego.jugadorActual.definirNivelDeJuego(nivelSeleccionado);
-		recuperarSeteosJugador();
-		/*JOAQUIN*/ pelota.transform.localScale=new Vector3(int.Parse(TxtTamanioPelota.text)/2,int.Parse(TxtTamanioPelota.text)/2,int.Parse(TxtTamanioPelota.text)/2);
-		}
+			int nivelSeleccionado = dropSelectorNivel.value+1;
+			datosJuego.jugadorActual.definirNivelDeJuego(nivelSeleccionado);
+			recuperarSeteosJugador();
+	}
+	public void dropSelectorModoChanged(){
+			datosJuego.jugadorActual.CambiarDeModo((ModosEnum)dropSelectorModo.value);
+			dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
+			recuperarSeteosJugador();
+	}
 
 	void recuperarSeteosJugador(){
+		Debug.Log("Ejecutando el método recuperarSeteosJugador");
+		DebugHelper.ImprimirElJugadorActual(datosJuego);
 		//coloco los valores recuperados en la pantalla
 		lblJugador.text=datosJuego.jugadorActual.nombre;	
-		lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
 		// coloco los parametros recuperados en cada lugar que le corresponde
 		NivelDeJuego nivelDeJuego = datosJuego.jugadorActual.obtenerNivelDeJuego();
 
@@ -100,6 +83,7 @@ public class ScriptConfiguracion : MonoBehaviour {
 		TxtTamanioPelota.text = nivelDeJuego.tamanioPelota.ToString();
 		TxtTiempoDeColor.text = nivelDeJuego.tiempoDeColor.ToString();
 		TxtTiempoDeInicio.text = nivelDeJuego.tiempoDeInicio.ToString();
-		dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
+		
+		/*JOAQUIN*/ pelota.transform.localScale=new Vector3(int.Parse(TxtTamanioPelota.text)/2,int.Parse(TxtTamanioPelota.text)/2,int.Parse(TxtTamanioPelota.text)/2);		
 	}
 }
