@@ -21,8 +21,8 @@ public class NivelDeJuego
                                     {4,4,4,3,3,3,2,2,2,2},
                                     {3,3,3,2,2,2,1,1,1,1}}; 
         int[,] arrayCantidadPelotas={{4,4,4,5,5,5,6,6,6,6},
-                                     {6,6,6,7,7,7,8,8,8,8},
-                                     {7,7,8,8,8,8,9,9,10,10}}; 
+                                     {4,6,6,7,7,7,8,8,8,8},
+                                     {4,7,8,8,8,8,9,9,10,10}}; 
         int[,] arrayVelocidadPelotas={{4,4,4,5,5,5,6,6,6,6},
                                       {6,6,7,7,7,8,8,8,8,8},
                                       {8,8,9,9,9,9,10,10,10,10}}; 
@@ -31,7 +31,7 @@ public class NivelDeJuego
                                  {4,4,4,4,4,4,4,4,4,4}}; 
         int[,] arrayCantidadResaltadas={{2,2,2,2,2,3,3,3,3,3},
                                         {2,2,2,3,3,3,3,3,3,4},
-                                        {3,3,4,4,4,4,4,4,4,5}};
+                                        {2,3,4,4,4,4,4,4,4,5}};
         bool[,] arrayContinuarRebotes={{false,false,false,false,false,false,false,false,false,true},
                                        {false,false,false,false,false,false,false,false,false,true},
                                        {false,false,false,false,false,false,false,false,false,true}};

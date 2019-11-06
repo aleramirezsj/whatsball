@@ -18,7 +18,9 @@ public class ScriptConfiguracion : MonoBehaviour {
 	public Text TxtTamanioPelota;
 	public Dropdown dropSelectorNivel;
 	public Dropdown dropSelectorModo;
+	public Dropdown dropSelectorDeporte;
 	public GameObject pelota;
+	public Image imagenFondoCancha;	
 
 	public void CambiarEscenaA(string nombreEscena)
 	{
@@ -36,6 +38,9 @@ public class ScriptConfiguracion : MonoBehaviour {
 			recuperarSeteosJugador();
 			dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
 			dropSelectorModo.value=(int)datosJuego.jugadorActual.modoActual;
+			dropSelectorDeporte.value=(int)datosJuego.jugadorActual.deporteActual;
+			imagenFondoCancha.sprite=JuegoHelper.obtenerFondo(datosJuego.jugadorActual.deporteActual);
+			pelota.GetComponent<SpriteRenderer>().sprite=JuegoHelper.obtenerPelota(datosJuego.jugadorActual.deporteActual);	
 		}else{
 			Debug.Log("No encontró el archivo");
 		}
@@ -67,6 +72,13 @@ public class ScriptConfiguracion : MonoBehaviour {
 			datosJuego.jugadorActual.CambiarDeModo((ModosEnum)dropSelectorModo.value);
 			dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
 			recuperarSeteosJugador();
+	}
+
+	public void dropSelectorDeporteChanged(){
+		datosJuego.jugadorActual.deporteActual=(DeportesEnum)dropSelectorDeporte.value;
+		imagenFondoCancha.sprite=JuegoHelper.obtenerFondo(datosJuego.jugadorActual.deporteActual);
+			pelota.GetComponent<SpriteRenderer>().sprite=JuegoHelper.obtenerPelota(datosJuego.jugadorActual.deporteActual);	
+
 	}
 
 	void recuperarSeteosJugador(){

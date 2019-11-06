@@ -12,6 +12,8 @@ public class ScriptNuevoJugador : MonoBehaviour {
 	private DatosJuego datosJuego;
 	public Dropdown dropSelectorModo;
 	public Dropdown dropSelectorDeporte;
+	public Image imagenFondoCancha;
+	public Image imagenPelota;
 
 	public void CambiarEscenaA(string nombreEscena)
 	{
@@ -26,6 +28,7 @@ public class ScriptNuevoJugador : MonoBehaviour {
 	    Application.Quit(); 
 	}
 	void Start () {
+		
 		 //si existe el archivo con la configuración del juego lo recupera 
 		Screen.fullScreen = false;
         datosJuego=DatosJuegoHelper.ObtenerDesdeArchivo();
@@ -39,11 +42,17 @@ public class ScriptNuevoJugador : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () 
-		{
-		//musicPlayer.Play();
-		if (Input.GetKeyDown(KeyCode.Escape)) 
-			Application.Quit(); 
-		}
+	{
+	//musicPlayer.Play();
+	if (Input.GetKeyDown(KeyCode.Escape)) 
+		Application.Quit(); 
+	}
+
+	public void dropSelectorDeporteChanged(){
+		imagenFondoCancha.sprite=JuegoHelper.obtenerFondo((DeportesEnum)dropSelectorDeporte.value);
+		imagenPelota.sprite=JuegoHelper.obtenerPelota((DeportesEnum)dropSelectorDeporte.value);
+
+	}
 
 
 

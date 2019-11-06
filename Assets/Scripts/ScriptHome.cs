@@ -11,12 +11,14 @@ public class ScriptHome : MonoBehaviour {
 
 	public Text lblNivel;
 	public Text lblModo;
+	public Text lblDeporte;
 	public Dropdown dropSelectorJugador;
 	private DatosJuego datosJuego;
 	private int indexJugadorSeleccionado;
 	public Button BtnJugar;
 	public Button BtnConfiguracion;
 	public Button BtnEstadisticas;
+	public Image imagenPelota;
 	
 
 	public void CambiarEscenaA(string nombreEscena)
@@ -37,6 +39,8 @@ public class ScriptHome : MonoBehaviour {
 		if(datosJuego!=null){
 			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
 			lblModo.text="Modo "+datosJuego.jugadorActual.modoActual.ToString();
+			lblDeporte.text="Deporte "+datosJuego.jugadorActual.deporteActual.ToString();
+			imagenPelota.sprite=JuegoHelper.obtenerPelota(datosJuego.jugadorActual.deporteActual);
 			CargarDropDownJugadores();
 		}else{
 			DesactivarActivarControles(false);

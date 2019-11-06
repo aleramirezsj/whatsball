@@ -49,7 +49,7 @@ public static class DatosJuegoHelper
     bf.Serialize(archivo,datosJuego);
     archivo.Close();
 }
-internal static void almacenarNuevoJugador(DatosJuego datosJuego, string nombreJugador, ModosEnum modo){
+internal static void almacenarNuevoJugador(DatosJuego datosJuego, string nombreJugador, ModosEnum modo, DeportesEnum deporte){
     //ALTERNATIVAS QUE CONTEMPLA EL SIGUIENTE CÓDIGO
     //1) Que no haya encontrado el archivo y por lo tanto el objeto datosJuego sea igual a nulo
     //	1.1)Además si no se definió un nombre de jugador crea un Usuario Random
@@ -63,9 +63,9 @@ internal static void almacenarNuevoJugador(DatosJuego datosJuego, string nombreJ
         nombreJugador="Usuario"+(int)Random.Range(1,1000);    
     if (datosJuego==null){
         //Debug.Log("CReando la instancia"+txtNombreJugador.text.Trim().Length.ToString());
-        datosJuego=new DatosJuego(nombreJugador,modo);
+        datosJuego=new DatosJuego(nombreJugador,modo, deporte);
     }else{
-        datosJuego.crearJugador(nombreJugador,modo);
+        datosJuego.crearJugador(nombreJugador,modo, deporte);
     }
 
     BinaryFormatter bf= new BinaryFormatter();

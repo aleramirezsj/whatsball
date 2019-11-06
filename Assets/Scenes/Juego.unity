@@ -290,7 +290,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5720168b3eef4c34f86621e77cd567b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0f9bcdca6180f74f88fd4ea81ccec84, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1592,6 +1592,8 @@ MonoBehaviour:
   lblPromedioErrores: {fileID: 1186079131}
   lblIteracion: {fileID: 1841086106}
   lblRendimientoAlmacenado: {fileID: 887281079}
+  imagenFondoCancha: {fileID: 119710011}
+  pelotaTenis: {fileID: 21300000, guid: 37986bb6371a639419eb7c96cd7944f9, type: 3}
 --- !u!82 &1110673551
 AudioSource:
   m_ObjectHideFlags: 0

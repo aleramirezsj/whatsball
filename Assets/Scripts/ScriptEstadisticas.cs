@@ -43,6 +43,7 @@ public class ScriptEstadisticas : MonoBehaviour {
 			recuperarSeteosJugador();
 			dropSelectorNivel.value=datosJuego.jugadorActual.nivelActual-1;
 			dropSelectorModo.value=(int)datosJuego.jugadorActual.modoActual;
+			pelota.GetComponent<SpriteRenderer>().sprite=JuegoHelper.obtenerPelota(datosJuego.jugadorActual.deporteActual);	
 		}else{
 			Debug.Log("No encontró el archivo");
 		}

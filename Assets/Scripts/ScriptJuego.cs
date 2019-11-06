@@ -58,7 +58,7 @@ public class ScriptJuego : MonoBehaviour {
 	private static List<Vector3> posicionesPelotas=new List<Vector3>();
 	public static float anchoPelota;
 	public static float altoPelota;
-	
+	public Image imagenFondoCancha;
 
 	void Start () {
 		Debug.Log("ejecutando Start");
@@ -80,6 +80,8 @@ public class ScriptJuego : MonoBehaviour {
 			lblJugador.text=datosJuego.jugadorActual.nombre;	
 			lblNivel.text="Nivel "+datosJuego.jugadorActual.nivelActual.ToString();
 			lblModo.text="Modo "+datosJuego.jugadorActual.modoActual.ToString();
+			imagenFondoCancha.sprite=JuegoHelper.obtenerFondo(datosJuego.jugadorActual.deporteActual);
+			pelota.GetComponent<SpriteRenderer>().sprite=JuegoHelper.obtenerPelota(datosJuego.jugadorActual.deporteActual);	
 		}
 		//Debug.Log("se recupero el archivo rendimientos almacenados= "+datosJuego.jugadorActual.rendimientosNiveles.Count.ToString());
 		datosRendimientos=datosJuego.jugadorActual.obtenerRendimientos();		

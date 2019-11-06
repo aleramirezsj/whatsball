@@ -145,7 +145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -359.00098, y: 98}
+  m_AnchoredPosition: {x: -359.00098, y: 116}
   m_SizeDelta: {x: 162.3, y: 25.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &12767816
@@ -188,6 +188,75 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 12767814}
   m_CullTransparentMesh: 0
+--- !u!1 &52308409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 52308412}
+  - component: {fileID: 52308411}
+  - component: {fileID: 52308410}
+  m_Layer: 5
+  m_Name: imagenPelota
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &52308410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 52308409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 61b1a21306727224cbf29c56c5ff7ce0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &52308411
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 52308409}
+  m_CullTransparentMesh: 0
+--- !u!224 &52308412
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 52308409}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.6387103, y: 1.6387103, z: 1.6387103}
+  m_Children: []
+  m_Father: {fileID: 1330909459}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -396.25, y: -86}
+  m_SizeDelta: {x: 51.5, y: 51.478}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &60273863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,10 +1317,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lblNivel: {fileID: 12767816}
   lblModo: {fileID: 1493260108}
+  lblDeporte: {fileID: 1693777621}
   dropSelectorJugador: {fileID: 764218168}
   BtnJugar: {fileID: 128873420}
   BtnConfiguracion: {fileID: 1120223796}
   BtnEstadisticas: {fileID: 612188189}
+  imagenPelota: {fileID: 52308410}
 --- !u!4 &767275994
 Transform:
   m_ObjectHideFlags: 0
@@ -2223,6 +2294,8 @@ RectTransform:
   - {fileID: 612188188}
   - {fileID: 2018660891}
   - {fileID: 1493260106}
+  - {fileID: 1693777619}
+  - {fileID: 52308412}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2852,8 +2925,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -359.00098, y: -1.2}
-  m_SizeDelta: {x: 162.3, y: 51.5}
+  m_AnchoredPosition: {x: -334, y: 37}
+  m_SizeDelta: {x: 195.1, y: 45.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1493260107
 CanvasRenderer:
@@ -2894,9 +2967,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Modo
-
-    principiante'
+  m_Text: Modo principiante
 --- !u!1 &1635568049
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,6 +3194,81 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1656277687}
   m_CullTransparentMesh: 0
+--- !u!1 &1693777618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1693777619}
+  - component: {fileID: 1693777620}
+  - component: {fileID: 1693777621}
+  m_Layer: 5
+  m_Name: lblDeporte
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1693777619
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1693777618}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.4266975, y: 1.4266975, z: 1.4266975}
+  m_Children: []
+  m_Father: {fileID: 1330909459}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -334, y: -22.899998}
+  m_SizeDelta: {x: 195.1, y: 45.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1693777620
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1693777618}
+  m_CullTransparentMesh: 0
+--- !u!114 &1693777621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1693777618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5803922, g: 0.87843144, b: 0.57254905, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: b420ca4889c522247b65881ce64051a5, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 2
+    m_MaxSize: 200
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Deporte
 --- !u!1 &1694676980
 GameObject:
   m_ObjectHideFlags: 0

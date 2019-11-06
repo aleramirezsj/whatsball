@@ -12,13 +12,13 @@ public class DatosJuego  {
 		recuperarJugador(nombreJugador);
 
 	}
-	public DatosJuego (string nombreJugador,ModosEnum modo){
-		crearJugador(nombreJugador,modo);
+	public DatosJuego (string nombreJugador,ModosEnum modo, DeportesEnum deporte){
+		crearJugador(nombreJugador,modo, deporte);
 
 	}
-	public void crearJugador(string nombreJugador, ModosEnum modo){
+	public void crearJugador(string nombreJugador, ModosEnum modo, DeportesEnum deporte){
 			//creamos un nuevo jugador y lo asignamos a la propiedad jugadorActual
-			jugadorActual= new DatosJugador(nombreJugador,modo);
+			jugadorActual= new DatosJugador(nombreJugador,modo, deporte);
 			//almacenamos al jugador que creamos en el diccionario
 			jugadores.Add(nombreJugador.ToUpper(),jugadorActual);		
 	}

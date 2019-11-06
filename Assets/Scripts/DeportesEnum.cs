@@ -1,8 +1,8 @@
 ﻿   
     public enum DeportesEnum
     {
-		Basquetbol,
-		Futbol,
-		Tenis,
-		Voley
+      Basquetbol,
+      Futbol,
+      Tenis,
+      Voley
     }
