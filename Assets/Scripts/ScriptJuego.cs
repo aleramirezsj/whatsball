@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+
 public class ScriptJuego : MonoBehaviour {
 
 	// Propiedades vinculada con elementos de la pantalla
@@ -59,6 +60,7 @@ public class ScriptJuego : MonoBehaviour {
 	public static float anchoPelota;
 	public static float altoPelota;
 	public Image imagenFondoCancha;
+	
 
 	void Start () {
 		Debug.Log("ejecutando Start");
@@ -196,6 +198,7 @@ public class ScriptJuego : MonoBehaviour {
 			txtTiempoDeInicio.text=string.Format("{000:00.00}", tiempoRegistrado);
 
 		}
+
 	}
 
 	//este método intentará almacenar el rendimiento actual, en realidad  la clase DatosRendimientos tomará la decisión de almacenarlo si es uno de los 10 mejores tiempos del jugador para el nivel actual
