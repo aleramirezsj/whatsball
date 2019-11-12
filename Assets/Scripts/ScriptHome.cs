@@ -41,6 +41,7 @@ public class ScriptHome : MonoBehaviour {
 			lblModo.text="Modo "+datosJuego.jugadorActual.modoActual.ToString();
 			lblDeporte.text="Deporte "+datosJuego.jugadorActual.deporteActual.ToString();
 			imagenPelota.sprite=JuegoHelper.obtenerPelota(datosJuego.jugadorActual.deporteActual);
+			
 			CargarDropDownJugadores();
 		}else{
 			DesactivarActivarControles(false);
