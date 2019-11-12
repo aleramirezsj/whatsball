@@ -130,9 +130,21 @@ public class ScriptJuego : MonoBehaviour {
 	 void OnEnable()
 	{
 
-	}	
+	}
+
+    public void CambiarEscenaA(string nombreEscena)
+    {
+        SceneManager.LoadScene(nombreEscena);
+    }
+		
 	// Update is called once per frame
 	void FixedUpdate () {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CambiarEscenaA("Home");
+        }
+
 		//Debug.Log("se recupero el archivo rendimientos almacenados= "+datosJuego.jugadorActual.rendimientosNiveles.Count.ToString());
 		if (!juegoIniciado && !esNecesarioVolver)
 		{

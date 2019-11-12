@@ -30,6 +30,5 @@ public class VolverEscena : MonoBehaviour {
 	void OnDisable()
 	{
 		
-
 	}
 }

@@ -111,7 +111,9 @@ public class ScriptPersonalizacion : MonoBehaviour
     {
         //musicPlayer.Play();
         if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+        {
+            CambiarEscenaA("Configuracion");
+        }
     }
 
     public void dropSelectorNivelChanged()

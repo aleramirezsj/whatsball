@@ -57,11 +57,13 @@ public class ScriptEstadisticas : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () 
-		{
-		//musicPlayer.Play();
+	{
+		
 		if (Input.GetKeyDown(KeyCode.Escape)) 
-			Application.Quit(); 
-		}
+		{
+            CambiarEscenaA("Home");
+		}	
+	}
 
 	public void dropSelectorNivelChanged (){
 		int nivelSeleccionado = dropSelectorNivel.value+1;

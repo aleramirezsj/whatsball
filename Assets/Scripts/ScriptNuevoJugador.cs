@@ -44,8 +44,10 @@ public class ScriptNuevoJugador : MonoBehaviour {
 	void Update () 
 	{
 	//musicPlayer.Play();
-	if (Input.GetKeyDown(KeyCode.Escape)) 
-		Application.Quit(); 
+		if (Input.GetKeyDown(KeyCode.Escape)) 
+		{
+			CambiarEscenaA("Home");
+		}
 	}
 
 	public void dropSelectorDeporteChanged(){
