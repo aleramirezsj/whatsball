@@ -218,7 +218,7 @@ public class ScriptJuego : MonoBehaviour {
 			txtTiempoDeInicio.text=string.Format("{000:00.00}", tiempoRegistrado);
 
 		}
-
+		
 	}
 
 	//este método intentará almacenar el rendimiento actual, en realidad  la clase DatosRendimientos tomará la decisión de almacenarlo si es uno de los 10 mejores tiempos del jugador para el nivel actual

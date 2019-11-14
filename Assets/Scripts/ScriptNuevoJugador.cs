@@ -42,11 +42,11 @@ public class ScriptNuevoJugador : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () 
-	{
-	//musicPlayer.Play();
-	if (Input.GetKeyDown(KeyCode.Escape)) 
-		Application.Quit(); 
-	}
+		{
+		//musicPlayer.Play();
+		if (Input.GetKeyDown(KeyCode.Escape)) 
+			CambiarEscenaA("Home"); 
+		}
 
 	public void dropSelectorDeporteChanged(){
 		imagenFondoCancha.sprite=JuegoHelper.obtenerFondo((DeportesEnum)dropSelectorDeporte.value);

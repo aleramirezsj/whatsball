@@ -60,7 +60,7 @@ public class ScriptEstadisticas : MonoBehaviour {
 		{
 		//musicPlayer.Play();
 		if (Input.GetKeyDown(KeyCode.Escape)) 
-			Application.Quit(); 
+			CambiarEscenaA("Home"); 
 		}
 
 	public void dropSelectorNivelChanged (){

@@ -8,4 +8,9 @@ public class VolverMenu : MonoBehaviour {
 	{
 		SceneManager.LoadScene(nombreEscena);
     }
+	void Update(){
+		if (Input.GetKeyDown(KeyCode.Escape)) 
+			CambiarEscenaA("Home"); 
+
+	}	
 }

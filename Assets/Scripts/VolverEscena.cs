@@ -22,6 +22,11 @@ public class VolverEscena : MonoBehaviour {
 		ComportamientoPelota.esNecesarioVolver=false;
 
 	}
+	void Update(){
+		if (Input.GetKeyDown(KeyCode.Escape)) 
+			CambiarEscenaA("Home"); 
+
+	}
 
 	void Start () {
 		Debug.Log("inicio de volverEscena");

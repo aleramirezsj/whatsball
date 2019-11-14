@@ -109,12 +109,12 @@ public class ScriptPersonalizacion : MonoBehaviour
 
     }
     // Update is called once per frame
-    void Update()
-    {
-        //musicPlayer.Play();
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
-    }
+	void Update () 
+		{
+		//musicPlayer.Play();
+		if (Input.GetKeyDown(KeyCode.Escape)) 
+			CambiarEscenaA("Home"); 
+		}
 
     public void dropSelectorNivelChanged()
     {
