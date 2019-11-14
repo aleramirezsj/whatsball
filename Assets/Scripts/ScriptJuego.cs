@@ -59,6 +59,7 @@ public class ScriptJuego : MonoBehaviour {
 	public static float anchoPelota;
 	public static float altoPelota;
 	public Image imagenFondoCancha;
+	private Vector2 velocityPelota;
 
 	void Start () {
 		Debug.Log("ejecutando Start");
@@ -163,6 +164,7 @@ public class ScriptJuego : MonoBehaviour {
 					int velocidadXAleatoria=UnityEngine.Random.Range(1,velocidadPelotasActual*2);	
 					int velocidadYAleatoria=velocidadPelotasActual-velocidadXAleatoria;
 					pelo.GetComponent<Rigidbody2D>().velocity=new Vector2(velocidadXAleatoria*multiX,velocidadYAleatoria*multiY);
+					
 				}				
 				juegoIniciado=true;
 				esNecesarioVolver=true;
@@ -187,6 +189,22 @@ public class ScriptJuego : MonoBehaviour {
 				detenerMovimiento=true;
 				detenerMovimientoAPelotas();
 			}
+			if(velocityPelota!=GetComponent<Rigidbody2D>().velocity){
+				float x=GetComponent<Rigidbody2D>().velocity.x;
+				float xAnterior=velocityPelota.x;
+				if(x<xAnterior){
+					if(GetComponent<Rigidbody2D>().angularVelocity<100)
+						GetComponent<Rigidbody2D>().AddTorque(50);
+				}
+				if(x>xAnterior){
+					if(GetComponent<Rigidbody2D>().angularVelocity>-100)
+						GetComponent<Rigidbody2D>().AddTorque(-50);	
+				}			
+				Debug.Log("y="+GetComponent<Rigidbody2D>().velocity.y.ToString()+"  x="
+							+GetComponent<Rigidbody2D>().velocity.x.ToString());
+				velocityPelota=GetComponent<Rigidbody2D>().velocity;
+			}
+			
 		}
 
 		if((tiempoDeInicio+tiempoDeColor>=segundos)&&(tiempoRegistrado==0))
@@ -288,8 +306,10 @@ public class ScriptJuego : MonoBehaviour {
 		foreach(GameObject pelotaEnPantalla in pelotasEnElJuego){
 			
 			//lblJugador.enabled=false;
-			if(continuarRebotes==false)
+			if(continuarRebotes==false){
 				pelotaEnPantalla.GetComponent<Rigidbody2D>().velocity=new Vector2(0,0);
+				pelotaEnPantalla.GetComponent<Rigidbody2D>().angularVelocity = 0;
+			}
 		}		
 	}
 	#endregion
