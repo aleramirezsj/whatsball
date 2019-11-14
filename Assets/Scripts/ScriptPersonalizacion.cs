@@ -25,6 +25,7 @@ public class ScriptPersonalizacion : MonoBehaviour
     public Slider sldTamanioPelota;
     public Text txtTamanioPelota;
     public Dropdown dropSelectorNivel;
+    public Dropdown dropSelectorDeporte;
     public Button btnGuardarVolver;
 
     Dictionary<string, int> dictionarySeteos = new Dictionary<string, int>();
@@ -69,6 +70,7 @@ public class ScriptPersonalizacion : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream archivo = File.Open(Application.persistentDataPath + "/DatosWhatsBall.dat", FileMode.OpenOrCreate);
             datosJuego = (DatosJuego)bf.Deserialize(archivo);
+            pelota.GetComponent<SpriteRenderer>().sprite=JuegoHelper.obtenerPelota(datosJuego.jugadorActual.deporteActual);
 
             //datosJuego = new DatosJuego("hacha");
             archivo.Close();
@@ -224,4 +226,10 @@ public class ScriptPersonalizacion : MonoBehaviour
         sldTiempoDeInicio.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
         dropSelectorNivel.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
     }
+    
+    	public void dropSelectorDeporteChanged()
+        {
+		datosJuego.jugadorActual.deporteActual=(DeportesEnum)dropSelectorDeporte.value;
+			pelota.GetComponent<SpriteRenderer>().sprite=JuegoHelper.obtenerPelota(datosJuego.jugadorActual.deporteActual);	
+	    }
 }
