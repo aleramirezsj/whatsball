@@ -45,7 +45,7 @@ public class NivelDeJuego
         cantidadResaltadas=arrayCantidadResaltadas[modo,nivel-1];
         continuarRebotes=arrayContinuarRebotes[modo,nivel-1];
         tiempoDeInicio=tiempoDeColor;
-        iniciarInmediatamente=false;
+
 
     }
 

@@ -347,7 +347,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2072730779
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 50
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3945,7 +3945,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2072730779
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 50
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5425,7 +5425,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1992964589}
-  - component: {fileID: 1992964588}
   - component: {fileID: 1992964590}
   m_Layer: 0
   m_Name: CambiadorDeEscena
@@ -5434,25 +5433,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1992964588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1992964587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d537c9d5559734b8f011d939d93c4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sldTamanioPelota: {fileID: 748551102}
-  sldVelocidadPelotas: {fileID: 787528331}
-  sldCantidadPelotas: {fileID: 848555856}
-  sldCantidadResaltadas: {fileID: 327053988}
-  sldTiempoDeColor: {fileID: 1473998659}
-  sldTiempoDeInicio: {fileID: 7604569}
-  infNombreJugador: {fileID: 0}
-  lstJugadores: {fileID: 0}
 --- !u!4 &1992964589
 Transform:
   m_ObjectHideFlags: 0
@@ -5492,6 +5472,7 @@ MonoBehaviour:
   sldTamanioPelota: {fileID: 748551102}
   txtTamanioPelota: {fileID: 1800938871}
   dropSelectorNivel: {fileID: 246153574}
+  dropSelectorDeporte: {fileID: 0}
   btnGuardarVolver: {fileID: 653160022}
 --- !u!1 &1994906981
 GameObject:

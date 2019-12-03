@@ -1959,7 +1959,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1393505410}
   - component: {fileID: 1393505412}
-  - component: {fileID: 1393505411}
   m_Layer: 0
   m_Name: Paredizquierda
   m_TagString: Enemigo
@@ -1980,17 +1979,6 @@ Transform:
   m_Father: {fileID: 707562915}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1393505411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1393505409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9942dc7e5c2b32343889be9778411e5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1393505412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2149,7 +2137,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1450795422}
   - component: {fileID: 1450795424}
-  - component: {fileID: 1450795423}
   m_Layer: 0
   m_Name: Paredderecha
   m_TagString: Jugador
@@ -2170,17 +2157,6 @@ Transform:
   m_Father: {fileID: 707562915}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1450795423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1450795421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9942dc7e5c2b32343889be9778411e5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1450795424
 BoxCollider2D:
   m_ObjectHideFlags: 0

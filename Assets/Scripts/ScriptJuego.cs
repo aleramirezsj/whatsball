@@ -30,7 +30,7 @@ public class ScriptJuego : MonoBehaviour {
 	int segundos=0;
 	float contadorDeSegundos=0;
 	float medidaDeTiempo=1;
-	bool iniciarInmediatamente;
+
 	static public bool finalizarJuego;
 	bool continuarRebotes;
 	static public int cantidadResaltadas;
@@ -95,7 +95,6 @@ public class ScriptJuego : MonoBehaviour {
 		cantidadTotalPelotas=nivelDeJuego.cantidadTotalPelotas;
 		tamanioActualPelota=nivelDeJuego.tamanioPelota;
 		velocidadPelotasActual=nivelDeJuego.velocidadActualPelotas;
-		iniciarInmediatamente=nivelDeJuego.iniciarInmediatamente;
 		tiempoDeColor=nivelDeJuego.tiempoDeColor;
 		tiempoDeInicio=nivelDeJuego.tiempoDeInicio;
 		continuarRebotes=nivelDeJuego.continuarRebotes;
