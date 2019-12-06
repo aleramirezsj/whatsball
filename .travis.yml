@@ -1,0 +1,31 @@
+sudo: required
+language: bash
+env:
+  global:
+  - IMAGE_NAME=unity3d:2018.2.11f1-android
+  - BUILD_NAME=WhatsBall
+services:
+- docker
+before_install:
+- openssl aes-256-cbc -K $encrypted_0fe78c2a7e09_key -iv $encrypted_0fe78c2a7e09_iv
+  -in ./unity3d.alf -out ./Unity_v2018.x.ulf -d
+- export UNITY_LICENSE_CONTENT=`cat Unity_v2018.x.ulf`
+- rm Unity_v2018.x.ulf
+- docker pull $IMAGE_NAME
+jobs:
+  include:
+  - stage: build
+    env: BUILD_TARGET=Android 
+    script: 
+      - "chmod +x ./ci/docker_build.sh"
+      - "sudo chmod -R 777 ./Builds/"
+      - "cd ./Builds/"
+      - "zip -r Android.zip ./Android/"
+    deploy:
+      provider: releases
+      api_key: $GITHUB_API_KEY
+      file: Android.zip
+      skip_cleanup: true
+      on:
+        tags: true
+
