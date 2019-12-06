@@ -10,7 +10,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_845dc36cc80b_key -iv $encrypted_845dc36cc80b_iv -in Unity_v2018.x.ulf.enc -out ./Unity_v2018.x.ulf -d
 - export UNITY_LICENSE_CONTENT="cat Unity_v2018.x.ulf"
 - rm Unity_v2018.x.ulf
-- docker pull $IMAGE_NAME
+- docker pull gableroux/unity3d:2018.2.11f1-android
 jobs:
   include:
   - stage: build
