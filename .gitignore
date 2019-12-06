@@ -53,7 +53,10 @@ sysinfo.txt
 *.unitypackage
 *.keystore
 unity3d.alf
+<<<<<<< HEAD
 Unity_v2018.x.ulf
+=======
+>>>>>>> c65d96064f7aa1522bb7b345bfc6c3c912dcf884
 
 # Crashlytics generated file
 crashlytics-build.properties
