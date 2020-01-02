@@ -246,8 +246,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/Ramirez/Documents/WhatsBallDefinitivo/whatsball/user.keystore
-  AndroidKeyaliasName: whatsball
+  AndroidKeystoreName: C:/Users/alera/Desarrollos/PractProf/whatsball/user.keystore
+  AndroidKeyaliasName: 
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

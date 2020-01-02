@@ -3,7 +3,7 @@ using System.Linq;
 using System;
 using System.IO;
 
-static class BuildCommand
+/*static class BuildCommand
 {
     private const string KEYSTORE_PASS  = "KEYSTORE_PASS";
     private const string KEY_ALIAS_PASS = "KEY_ALIAS_PASS";
@@ -194,3 +194,4 @@ static class BuildCommand
         PlayerSettings.Android.keyaliasPass = keystoreAliasPass;
     }
 }
+*/
